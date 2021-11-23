@@ -40,22 +40,21 @@ if(isset($_POST['login'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login User</title>
 </head>
-<h2>Login Admin</h2>
-<p>
-    <?php echo $message ?>
-</p>
-<form action="" method="POST">
-    <label for="email">Email: </label>
-    <input type="email" name="email" id="email" />
-    <label for="password">Password: </label>
-    <input type="password" name="password" id="password" />
-    <button name="login">Login</button>
-</form>
-
-<a href="register.php">Registrasi sekarang</a>
 
 <body>
+    <h2>Login Admin</h2>
+    <p>
+        <?php echo $message ?>
+    </p>
+    <form action="" method="POST">
+        <label for="email">Email: </label>
+        <input type="email" name="email" id="email" />
+        <label for="password">Password: </label>
+        <input type="password" name="password" id="password" />
+        <button name="login">Login</button>
+    </form>
 
+    <a href="register.php">Registrasi sekarang</a>
 </body>
 
 </html>
