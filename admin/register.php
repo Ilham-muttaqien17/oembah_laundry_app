@@ -4,7 +4,7 @@ require 'functions.php';
 if(isset($_POST['register'])){
 
     // check if the data was successfully added or not
-    if(registerUser($_POST) > 0){
+    if(registerLaundry($_POST) > 0){
         echo "<script>
         alert('Berhasil mendaftarkan akun!'); 
         document.location.href = 'login.php'
@@ -31,7 +31,7 @@ if(isset($_POST['register'])){
 </head>
 
 <body>
-    <h2>Resgistrasi User Baru</h2>
+    <h2>Registrasi Laundry</h2>
     <form action="" method="POST">
         <ul>
             <li>
@@ -49,6 +49,34 @@ if(isset($_POST['register'])){
             <li>
                 <label for="confirm">Konfirmasi Password: </label>
                 <input type="password" name="confirm" id="confirm" required>
+            </li>
+            <li>
+                <label for="alamat">Alamat: </label>
+                <input type="text" name="alamat" id="alamat" required>
+            </li>
+            <li>
+                <label for="biaya">Biaya: </label>
+                <input type="number" min="0.00" name="biaya" id="biaya" required>
+            </li>
+            <li>
+                <label for="kontak">Kontak: </label>
+                <input type="text" name="kontak" id="kontak" required>
+            </li>
+            <li>
+                <label for="jenis">Pilih jenis laundry</label>
+                <select name="jenis" id="jenis" name="jenis" required>
+                    <option value="Kiloan">Kiloan</option>
+                    <option value="Sepatu">Sepatu</option>
+                    <option value="Helm">Helm</option>
+                </select>
+            </li>
+            <li>
+                <label for="open_time">Jam Buka: </label>
+                <input type="time" name="open_time" id="open_time" required>
+            </li>
+            <li>
+                <label for="close_time">Jam Buka: </label>
+                <input type="time" name="close_time" id="close_time" required>
             </li>
             <li>
                 <button name="register">Daftar Sekarang</button>

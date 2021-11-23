@@ -16,7 +16,7 @@ $message = '';
 if(isset($_POST['login'])){
     if(!empty($_POST['email'])){
         if(!empty($_POST['password'])){
-            if(loginUser($_POST) === false){
+            if(loginLaundry($_POST) === false){
                 $message = "Email atau password salah";
             }
         } else {
@@ -40,7 +40,7 @@ if(isset($_POST['login'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login User</title>
 </head>
-<h2>Login User</h2>
+<h2>Login Admin</h2>
 <p>
     <?php echo $message ?>
 </p>
