@@ -12,7 +12,12 @@ function validateData($data) {
 function query($query) {
     global $conn;
     $result = mysqli_query($conn, $query);
-    $row = mysqli_fetch_assoc($result);
+    $rows = [];
+    while($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+
+    return $rows;
 }
 
 function registerUser($data) {
@@ -82,6 +87,20 @@ function checkCookie($cookie){
 
     return false;
     
+}
+
+function getDetailLaundry($data){
+    global $conn;
+
+    //convert string to int
+    $cek = trim($data,'\'');
+    $id_laundry = (int) $cek;
+    $result = mysqli_query($conn, "SELECT * FROM tb_laundry WHERE id_laundry = '$id_laundry'");
+
+    $row = mysqli_fetch_assoc($result);
+
+    // var_dump($row);
+    return $row;
 }
 
 ?>
