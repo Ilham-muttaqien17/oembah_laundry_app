@@ -27,7 +27,7 @@ if(isset($_GET['id'])){
     }
     header('location: order_in.php');
 }
-var_dump($message);
+// var_dump($message);
 
 ?>
 
@@ -65,7 +65,7 @@ var_dump($message);
     <?php $i = 0 ?>
     <?php foreach($order as $row) : ?>
     <?php if(checkUser($data) == $row['id_laundry']) :?>
-    <?php if($row['status'] == 'Confirmed') : ?>
+    <?php if($row['status'] == 'Waiting') : ?>
     <div class="card my-4 w-25">
         <p>Order ID: <?= $row['id_order'] ?></p>
         <p>Kuantitas: <?= $row['qty'] ?></p>

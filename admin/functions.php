@@ -109,6 +109,20 @@ function confirmOrderIn($idOrder) {
     return mysqli_affected_rows($conn);
 }
 
+function processOrderIn($idOrder) {
+    global $conn;
+
+    $result = mysqli_query($conn, "SELECT * FROM tb_order WHERE id_order='$idOrder'");
+    $row = mysqli_fetch_assoc($result);
+    $oid = $row['id_order'];
+
+    $order_id = $oid;
+
+    mysqli_query($conn, "UPDATE tb_order SET status = 3 WHERE id_order = '$order_id'");
+
+    return mysqli_affected_rows($conn);
+}
+
 function checkUser($data) {
     global $conn;
 
