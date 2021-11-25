@@ -84,4 +84,40 @@ function checkCookie($cookie){
     
 }
 
+function query($query) {
+    global $conn;
+    $result = mysqli_query($conn, $query);
+    $rows = [];
+    while($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+
+    return $rows;
+}
+
+function confirmOrderIn($idOrder) {
+    global $conn;
+
+    $result = mysqli_query($conn, "SELECT * FROM tb_order WHERE id_order='$idOrder'");
+    $row = mysqli_fetch_assoc($result);
+    $oid = $row['id_order'];
+
+    $order_id = $oid;
+
+    mysqli_query($conn, "UPDATE tb_order SET status = 2 WHERE id_order = '$order_id'");
+
+    return mysqli_affected_rows($conn);
+}
+
+function checkUser($data) {
+    global $conn;
+
+    $result = mysqli_query($conn, "SELECT * FROM tb_laundry WHERE email = '$data' ");
+    $row = mysqli_fetch_assoc($result);
+
+    $lid = (int) $row['id_laundry'];
+
+    return $lid;
+}
+
 ?>

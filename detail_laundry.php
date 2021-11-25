@@ -2,6 +2,10 @@
 require 'functions.php';
 session_start();
 
+if(!isset($_SESSION['login'])){
+    header('location: login.php');
+}
+
 if(isset($_COOKIE['email'])){
     if(isset($_POST['order'])) {
     $email = $_COOKIE['email'];
