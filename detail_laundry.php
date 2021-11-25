@@ -2,13 +2,13 @@
 require 'functions.php';
 session_start();
 
-if(!isset($_SESSION['login'])){
+if(!isset($_SESSION['user'])){
     header('location: login.php');
 }
 
-if(isset($_COOKIE['email'])){
+if(isset($_COOKIE['user_email'])){
     if(isset($_POST['order'])) {
-    $email = $_COOKIE['email'];
+    $email = $_COOKIE['user_email'];
     $id_laundry = $_GET['id'];
     $qty = $_POST['qty'];
     $tipe_antar = $_POST['tipe_antar'];

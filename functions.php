@@ -64,8 +64,8 @@ function loginUser($data){
 
         //check password 
         if(password_verify($password, $row['password'])) {
-            setcookie("email", $email, time() + 3600);
-            $_SESSION['login'] = true;
+            setcookie("user_email", $email, time() + 3600);
+            $_SESSION['user'] = true;
             header('location: index.php');
             exit;
         } 
@@ -76,11 +76,11 @@ function loginUser($data){
 
 function checkCookie($cookie){
     global $conn;
-    if(isset($cookie['email'])){
-        $email = $cookie['email'];
+    if(isset($cookie['user_email'])){
+        $email = $cookie['user_email'];
         $result = mysqli_query($conn, "SELECT * FROM tb_user WHERE email = '$email'");
         $row = mysqli_fetch_assoc($result);
-        if($cookie['email'] == $row['email']){
+        if($cookie['user_email'] == $row['email']){
             return true;
         }
     }

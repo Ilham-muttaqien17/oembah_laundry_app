@@ -4,10 +4,10 @@ session_start();
 
 
 if(checkCookie($_COOKIE) === true) {
-    $_SESSION['login'] = true;
+    $_SESSION['admin'] = true;
 }
 
-if(isset($_SESSION['login'])){
+if(isset($_SESSION['admin'])){
     header('location: index.php');
 }
 

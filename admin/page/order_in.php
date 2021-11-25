@@ -3,12 +3,12 @@ require '../functions.php';
 
 session_start();
 
-if(!isset($_SESSION['login'])){
+if(!isset($_SESSION['admin'])){
     header('location: ../login.php');
 }
 
-if(isset($_COOKIE['email'])) {
-    $data = $_COOKIE['email'];
+if(isset($_COOKIE['admin_email'])) {
+    $data = $_COOKIE['admin_email'];
     // checkUser($data);
 }
 
@@ -20,15 +20,14 @@ if(isset($_GET['id'])){
 
     if(confirmOrderIn($_GET['id']) > 0) {
         // echo "<script>alert('Pesanan berhasil dikonfirmasi!');</script>";
-        $message = '<div class="alert alert-primary" role="alert">
-        Pesanan berhasil dikonfirmasi
-      </div>';
+        $message = '<div class="alert alert-primary" role="alert">Pesanan berhasil dikonfirmasi</div>';
         
     } else {
-        echo "<script>alert('Pesanan gagal dikonfirmasi!');</script>";
+        $message = '<div class="alert alert-primary" role="alert">Pesanan gagal dikonfirmasi</div>';
     }
     header('location: order_in.php');
 }
+var_dump($message);
 
 ?>
 
@@ -61,7 +60,7 @@ if(isset($_GET['id'])){
     <h1>Halaman List Order In</h1>
     <a class="btn btn-secondary mb-5" href="../index.php">Home</a>
 
-    <?= $message ?>
+    <?php echo $message; ?>
 
     <?php $i = 0 ?>
     <?php foreach($order as $row) : ?>

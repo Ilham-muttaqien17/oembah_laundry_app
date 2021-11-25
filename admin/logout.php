@@ -1,9 +1,9 @@
 <?php 
 
 session_start();
-session_unset();
-session_destroy();
-setcookie('email', '', time() - 3600);
+unset($_SESSION['admin']);
+// session_destroy();
+setcookie('admin_email', '', time() - 3600);
 header('location: login.php');
 
 ?>

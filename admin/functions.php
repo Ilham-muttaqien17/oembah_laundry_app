@@ -59,8 +59,8 @@ function loginLaundry($data){
 
         //check password 
         if(password_verify($password, $row['password'])) {
-            setcookie("email", $email, time() + 3600);
-            $_SESSION['login'] = true;
+            setcookie("admin_email", $email, time() + 3600);
+            $_SESSION['admin'] = true;
             header('location: index.php');
             exit;
         } 
@@ -71,11 +71,11 @@ function loginLaundry($data){
 
 function checkCookie($cookie){
     global $conn;
-    if(isset($cookie['email'])){
-        $email = $cookie['email'];
+    if(isset($cookie['admin_email'])){
+        $email = $cookie['admin_email'];
         $result = mysqli_query($conn, "SELECT * FROM tb_laundry WHERE email = '$email'");
         $row = mysqli_fetch_assoc($result);
-        if($cookie['email'] == $row['email']){
+        if($cookie['admin_email'] == $row['email']){
             return true;
         }
     }

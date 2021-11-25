@@ -4,10 +4,10 @@ session_start();
 
 
 if(checkCookie($_COOKIE) === true) {
-    $_SESSION['login'] = true;
+    $_SESSION['user'] = true;
 }
 
-if(isset($_SESSION['login'])){
+if(isset($_SESSION['user'])){
     header('location: index.php');
 }
 
