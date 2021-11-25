@@ -38,8 +38,8 @@ if(!isset($_SESSION['admin'])){
 
     <div>
         <a class="btn btn-secondary" href="page/order_in.php">Order In</a>
-        <a class="btn btn-secondary" href="page/on_process.php">On Process</a>
-        <a class="btn btn-secondary" href="#">Sent</a>
+        <a class="btn btn-secondary" href="page/on_process.php">Process Order</a>
+        <a class="btn btn-secondary" href="page/send_order.php">Send Order</a>
         <a class="btn btn-secondary" href="#">Finish</a>
     </div>
 
