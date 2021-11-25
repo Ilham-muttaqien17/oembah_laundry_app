@@ -47,7 +47,7 @@ if(!isset($_SESSION['login'])){
                 <p>Nama Laundry: <?= $row['nama_laundry']; ?></p>
                 <p>Tipe Laundry: <?= $row['tipe_laundry']; ?></p>
                 <p>Alamat Laundry: <?= $row['alamat']; ?></p>
-                <a class="btn_detail" href="detail_laundry.php?id='<?php echo $row['id_laundry']; ?>'">Detail</a>
+                <a class="btn_detail" href="detail_laundry.php?id=<?php echo $row['id_laundry']; ?>">Detail</a>
 
             </div>
         </div>

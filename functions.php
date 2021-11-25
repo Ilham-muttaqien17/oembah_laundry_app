@@ -93,14 +93,31 @@ function getDetailLaundry($data){
     global $conn;
 
     //convert string to int
-    $cek = trim($data,'\'');
-    $id_laundry = (int) $cek;
+    $id_laundry = (int) $data;
     $result = mysqli_query($conn, "SELECT * FROM tb_laundry WHERE id_laundry = '$id_laundry'");
 
     $row = mysqli_fetch_assoc($result);
 
     // var_dump($row);
     return $row;
+}
+
+function addOrder($email, $idLaundry, $jumlah, $tipe_antar){
+    global $conn;
+
+    $query1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE email = '$email'");
+    $row1 = mysqli_fetch_assoc($query1);
+    $userId = $row1['id_user'];
+
+    $id_laundry = (int) $idLaundry;
+    $id_user = (int) $userId;
+    $qty = $jumlah;
+    $status = 1;
+    $type_delivery = $tipe_antar;
+
+    mysqli_query($conn, "INSERT INTO tb_order VALUES('', '$qty', '$status', '$type_delivery', '$id_user', '$id_laundry')");
+    
+    return mysqli_affected_rows($conn);
 }
 
 ?>

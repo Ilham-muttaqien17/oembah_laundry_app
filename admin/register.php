@@ -64,7 +64,7 @@ if(isset($_POST['register'])){
             </li>
             <li>
                 <label for="jenis">Pilih jenis laundry</label>
-                <select name="jenis" id="jenis" name="jenis" required>
+                <select name="jenis" id="jenis" required>
                     <option value="Kiloan">Kiloan</option>
                     <option value="Sepatu">Sepatu</option>
                     <option value="Helm">Helm</option>
