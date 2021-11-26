@@ -6,6 +6,12 @@ if(!isset($_SESSION['admin'])){
     header('location: login.php');
 }
 
+if(!isset($_COOKIE['admin_email'])) {
+    setcookie('admin_email', '', time() - 3600);
+    unset($_SESSION['admin']);
+    header('location: login.php');
+}
+
 ?>
 
 
@@ -41,7 +47,7 @@ if(!isset($_SESSION['admin'])){
         <a class="btn btn-secondary" href="page/on_process.php">Process Order</a>
         <a class="btn btn-secondary" href="page/send_order.php">Send Order</a>
         <a class="btn btn-secondary" href="page/on_delivery.php">On Delivery</a>
-        <a class="btn btn-secondary" href="#">Finish</a>
+        <a class="btn btn-secondary" href="page/order_finish.php">Finish</a>
     </div>
 
     <a class="btn btn-primary mt-5" href="logout.php">Logout</a>

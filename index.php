@@ -7,6 +7,13 @@ if(!isset($_SESSION['user'])){
     header('location: login.php');
 }
 
+if(!isset($_COOKIE['user_email'])) {
+    setcookie('user_email', '', time() - 3600);
+    unset($_SESSION['user']);
+    header('location: login.php');
+}
+
+
 ?>
 
 

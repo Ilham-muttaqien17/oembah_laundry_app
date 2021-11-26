@@ -1,10 +1,12 @@
 <?php 
 require '../functions.php';
+
 session_start();
 
 if(!isset($_SESSION['admin'])){
     header('location: ../login.php');
 }
+$data = '';
 
 if(isset($_COOKIE['admin_email'])) {
     $data = $_COOKIE['admin_email'];
@@ -49,7 +51,7 @@ $order = query("SELECT * FROM tb_order");
     <?php $i = 0 ?>
     <?php foreach($order as $row) : ?>
     <?php if(checkUser($data) == $row['id_laundry']) :?>
-    <?php if($row['status'] == 'On Delivery') : ?>
+    <?php if($row['status'] == 'Delivered') : ?>
     <div class="card my-4 w-25">
         <p>Order ID: <?= $row['id_order'] ?></p>
         <p>Kuantitas: <?= $row['qty'] ?></p>
@@ -65,9 +67,9 @@ $order = query("SELECT * FROM tb_order");
     global $i;
    
         if($i <= 0){
-            echo "<p>Tidak ada pesanan yang sedang dikirim</p>";
+            echo "<p>Tidak ada pesanan yang selesai</p>";
         } else {
-            echo "<p>Terdapat $i pesanan yang sedang dikirim</p>";
+            echo "<p>Terdapat $i pesanan yang selesai</p>";
         }
     
     ?>

@@ -9,7 +9,10 @@ if(!isset($_SESSION['admin'])){
 
 if(isset($_COOKIE['admin_email'])) {
     $data = $_COOKIE['admin_email'];
-    // checkUser($data);
+} else {
+    setcookie('admin_email', '', time() - 3600);
+    unset($_SESSION['admin']);
+    header('location: ../login.php');
 }
 
 $order = query("SELECT * FROM tb_order");
