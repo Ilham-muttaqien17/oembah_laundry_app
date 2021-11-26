@@ -120,4 +120,24 @@ function addOrder($email, $idLaundry, $jumlah, $tipe_antar){
     return mysqli_affected_rows($conn);
 }
 
+function deleteRequest($data) {
+    global $conn;
+    $oid = (int) $data;
+
+    mysqli_query($conn, "DELETE FROM tb_order WHERE id_order = $oid");
+
+    return mysqli_affected_rows($conn);
+}
+
+function checkUser($data) {
+    global $conn;
+
+    $query = mysqli_query($conn, "SELECT * FROM tb_user WHERE email = '$data' ");
+    $row = mysqli_fetch_assoc($query);
+
+    $lid = (int) $row['id_user'];
+
+    return $lid;
+}
+
 ?>

@@ -43,6 +43,7 @@ if(isset($_COOKIE['user_email'])){
 
 <body>
     <h1>Halaman Detail Laundry</h1>
+    <a class="btn btn-secondary mb-5" href="index.php">Home</a>
 
     <?php if(isset($_GET['id'])) : ?>
     <?php $laundry = getDetailLaundry($_GET['id']); ?>

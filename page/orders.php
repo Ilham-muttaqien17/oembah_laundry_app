@@ -1,14 +1,28 @@
 <?php 
-require 'functions.php';
-
+require '../functions.php';
 session_start();
 
 if(!isset($_SESSION['user'])){
-    header('location: login.php');
+    header('location: ../login.php');
 }
 
-?>
+if(isset($_COOKIE['user_email'])) {
+    $data = $_COOKIE['user_email'];
+}
 
+if(isset($_GET['cancel'])) {
+    $cancel_id = $_GET['cancel'];
+    if(deleteRequest($cancel_id) > 0) {
+        echo "Pesanan Berhasil dibatalkan";
+    } else {
+        echo "Pesanan Gagal dibatalkan";
+    }
+    header('location: orders.php');
+}
+
+$order = query("SELECT * FROM tb_order");
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +31,7 @@ if(!isset($_SESSION['user'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Orders Page</title>
 
     <!-- Bootstrap 4.4 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -35,34 +49,32 @@ if(!isset($_SESSION['user'])){
 </head>
 
 <body>
-    <h1>Welcome to Dashboard</h1>
-    <div>
-        <a class="btn btn-secondary" href="page/orders.php">Orders</a>
-        <a class="btn btn-secondary" href="#">History</a>
-        <a class="btn btn-secondary" href="#">Notification</a>
-    </div>
 
-    <a href="logout.php">Logout</a>
+    <h1>Halaman List Orders</h1>
+    <a class="btn btn-secondary mb-5" href="../index.php">Home</a>
 
     <div class="d-flex flex-row">
-        <?php $laundry = query("SELECT * FROM tb_laundry"); ?>
-        <?php foreach( $laundry as $row ) : ?>
+        <?php $order = query("SELECT * FROM tb_order"); ?>
+        <?php foreach( $order as $row ) : ?>
+        <?php if(checkUser($data) == $row['id_user']) :?>
         <div class="card mx-4" style="width: 18rem;">
             <img class="card-img-top" src="https://via.placeholder.com/150" alt="">
             <div class="card-body">
-                <p class="card-text">Nama Laundry: <?= $row['nama_laundry']; ?></p>
-                <p class="card-text">Tipe Laundry: <?= $row['tipe_laundry']; ?></p>
-                <p class="card-text">Alamat Laundry: <?= $row['alamat']; ?></p>
-                <a class="btn btn-primary" href="detail_laundry.php?id=<?php echo $row['id_laundry']; ?>">Detail</a>
-
+                <p class="card-text">Order ID: <?= $row['id_order'] ?></p>
+                <p class="card-text">Kuantitas: <?= $row['qty'] ?></p>
+                <p class="card-text">Tipe Antar: <?= $row['tipe_antar'] ?></p>
+                <p class="card-text">Status: <?= $row['status'] ?></p>
+                <?php if($row['status'] == "Waiting") : ?>
+                <a class="btn btn-primary" href="orders.php?cancel=<?=$row['id_order'] ?>"
+                    onclick="return confirm('Hapus permintaan pesanan?');">Hapus permintaan</a>'
+                <?php endif ?>
             </div>
         </div>
 
-        <?php endforeach;?>
+        <?php endif; ?>
+        <?php endforeach; ?>
+
     </div>
-
-
-
 </body>
 
 </html>
