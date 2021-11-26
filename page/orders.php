@@ -20,6 +20,16 @@ if(isset($_GET['cancel'])) {
     header('location: orders.php');
 }
 
+if(isset($_GET['confirm'])) {
+    $confirm_id = $_GET['confirm'];
+    if(confirmOrderSent($confirm_id) > 0) {
+        echo "Pesanan Berhasil dibatalkan";
+    } else {
+        echo "Pesanan Gagal dibatalkan";
+    }
+    header('location: orders.php');
+}
+
 $order = query("SELECT * FROM tb_order");
 
 ?>
@@ -67,6 +77,10 @@ $order = query("SELECT * FROM tb_order");
                 <?php if($row['status'] == "Waiting") : ?>
                 <a class="btn btn-primary" href="orders.php?cancel=<?=$row['id_order'] ?>"
                     onclick="return confirm('Hapus permintaan pesanan?');">Hapus permintaan</a>'
+                <?php endif ?>
+                <?php if($row['status'] == "On Delivery") : ?>
+                <a class="btn btn-primary" href="orders.php?confirm=<?=$row['id_order'] ?>"
+                    onclick="return confirm('Konfirmasi pesanan datang?');">Konfirmasi pesanan</a>'
                 <?php endif ?>
             </div>
         </div>

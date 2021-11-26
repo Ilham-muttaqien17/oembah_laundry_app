@@ -129,6 +129,14 @@ function deleteRequest($data) {
     return mysqli_affected_rows($conn);
 }
 
+function confirmOrderSent($data) {
+    global $conn;
+    $oid = $data;
+    var_dump($oid);
+
+    mysqli_query($conn, "UPDATE tb_order SET status = 5 WHERE id_order = '$oid'");
+}
+
 function checkUser($data) {
     global $conn;
 
