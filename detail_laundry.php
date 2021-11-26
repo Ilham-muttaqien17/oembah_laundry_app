@@ -8,20 +8,20 @@ if(!isset($_SESSION['user'])){
 
 if(isset($_COOKIE['user_email'])){
     if(isset($_POST['order'])) {
-    $email = $_COOKIE['user_email'];
-    $id_laundry = $_GET['id'];
-    $qty = $_POST['qty'];
-    $tipe_antar = $_POST['tipe_antar'];
+        $email = $_COOKIE['user_email'];
+        $id_laundry = $_GET['id'];
+        $qty = $_POST['qty'];
+        $tipe_antar = $_POST['tipe_antar'];
 
-    $order = addOrder($email, $id_laundry, $qty, $tipe_antar);
+        $order = addOrder($email, $id_laundry, $qty, $tipe_antar);
 
-    if($order > 0) {
-        echo "<script>alert('Pesanan berhasil dibuat, silahkan tunggu konfirmasi!');
-        document.location.href = index.php</script>";
-    } else {
-        echo "<script>alert('Pesanan gagal dibuat, mohon ulangi lagi!');
-        document.location.href = detail_laundry.php</script>";
-    }
+        if($order > 0) {
+            echo "<script>alert('Pesanan berhasil dibuat, silahkan tunggu konfirmasi!');
+            document.location.href = index.php</script>";
+        } else {
+            echo "<script>alert('Pesanan gagal dibuat, mohon ulangi lagi!');
+            document.location.href = detail_laundry.php</script>";
+        }
     
     }
 }

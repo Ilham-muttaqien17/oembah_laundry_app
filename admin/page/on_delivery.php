@@ -1,13 +1,19 @@
 <?php 
-require 'functions.php';
+require '../functions.php';
 session_start();
 
 if(!isset($_SESSION['admin'])){
-    header('location: login.php');
+    header('location: ../login.php');
 }
 
-?>
+if(isset($_COOKIE['admin_email'])) {
+    $data = $_COOKIE['admin_email'];
+    // checkUser($data);
+}
 
+$order = query("SELECT * FROM tb_order"); 
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +22,7 @@ if(!isset($_SESSION['admin'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>On Delivery Page</title>
 
     <!-- Bootstrap 4.4 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -34,17 +40,34 @@ if(!isset($_SESSION['admin'])){
 </head>
 
 <body>
-    <h1>Welcome to Dashboard Admin</h1>
+    <h1>Halaman List On Delivery</h1>
+    <a class="btn btn-secondary mb-5" href="../index.php">Home</a>
 
-    <div>
-        <a class="btn btn-secondary" href="page/order_in.php">Order In</a>
-        <a class="btn btn-secondary" href="page/on_process.php">Process Order</a>
-        <a class="btn btn-secondary" href="page/send_order.php">Send Order</a>
-        <a class="btn btn-secondary" href="page/on_delivery.php">On Delivery</a>
-        <a class="btn btn-secondary" href="#">Finish</a>
+    <?php $i = 0 ?>
+    <?php foreach($order as $row) : ?>
+    <?php if(checkUser($data) == $row['id_laundry']) :?>
+    <?php if($row['status'] == 'On Delivery') : ?>
+    <div class="card my-4 w-25">
+        <p>Order ID: <?= $row['id_order'] ?></p>
+        <p>Kuantitas: <?= $row['qty'] ?></p>
+        <p>Tipe Antar: <?= $row['tipe_antar'] ?></p>
+        <p>User Id: <?= $row['id_user'] ?></p>
     </div>
+    <?php $i++; ?>
+    <?php endif ?>
+    <?php endif ?>
+    <?php endforeach ?>
 
-    <a class="btn btn-primary mt-5" href="logout.php">Logout</a>
+    <?php
+    global $i;
+   
+        if($i <= 0){
+            echo "<p>Tidak ada pesanan yang sedang dikirim</p>";
+        } else {
+            echo "<p>Terdapat $i pesanan yang sedang dikirim</p>";
+        }
+    
+    ?>
 </body>
 
 </html>
