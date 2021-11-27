@@ -102,8 +102,9 @@ function getDetailLaundry($data){
     return $row;
 }
 
-function addOrder($email, $idLaundry, $jumlah, $tipe_antar){
+function addOrder($email, $idLaundry, $jumlah, $tipe_antar, $tgl_order){
     global $conn;
+    
 
     $query1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE email = '$email'");
     $row1 = mysqli_fetch_assoc($query1);
@@ -114,8 +115,10 @@ function addOrder($email, $idLaundry, $jumlah, $tipe_antar){
     $qty = $jumlah;
     $status = 1;
     $type_delivery = $tipe_antar;
+    $order_time = $tgl_order;
 
-    mysqli_query($conn, "INSERT INTO tb_order VALUES('', '$qty', '$status', '$type_delivery', '$id_user', '$id_laundry')");
+    mysqli_query($conn, "INSERT INTO tb_order VALUES('', '$qty', '$status', '$type_delivery', '$order_time', '$id_user', '$id_laundry')");
+
     
     return mysqli_affected_rows($conn);
 }
@@ -158,6 +161,29 @@ function getLaundryName($data){
     $lid = $row['nama_laundry'];
 
     return $lid;
+}
+
+function addTransaction($id_laundry, $qty, $tgl_order){
+    global $conn;
+    $query1 = mysqli_query($conn, "SELECT * FROM tb_order WHERE tgl_order = '$tgl_order'");
+    $row1 = mysqli_fetch_assoc($query1);
+    $oid = (int) $row1['id_order'];
+
+    $query2 = mysqli_query($conn, "SELECT * FROM tb_laundry WHERE id_laundry = '$id_laundry'");
+    $row2 = mysqli_fetch_assoc($query2);
+    $price = $row2['biaya'];
+
+    $status = 2;
+
+    $total_cost = (int) $qty * (int) $price;
+
+    date_default_timezone_set('Asia/Jakarta');
+    $transac_date = date("Y-m-d h:i:sa");
+    
+
+    mysqli_query($conn, "INSERT INTO tb_transaksi VALUES ('', '$total_cost', '$transac_date', '$status', '$oid')");
+
+    return mysqli_affected_rows($conn);
 }
 
 ?>

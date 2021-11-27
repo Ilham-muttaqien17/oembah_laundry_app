@@ -13,7 +13,13 @@ if(isset($_COOKIE['user_email'])){
         $qty = $_POST['qty'];
         $tipe_antar = $_POST['tipe_antar'];
 
-        $order = addOrder($email, $id_laundry, $qty, $tipe_antar);
+        date_default_timezone_set('Asia/Jakarta');
+        $tgl_order = date("Y-m-d h:i:sa");
+
+        $order = addOrder($email, $id_laundry, $qty, $tipe_antar, $tgl_order);
+
+        $transaksi = addTransaction($id_laundry, $qty, $tgl_order);
+
 
         if($order > 0) {
             echo "<script>alert('Pesanan berhasil dibuat, silahkan tunggu konfirmasi!');

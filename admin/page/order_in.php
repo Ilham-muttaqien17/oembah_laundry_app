@@ -19,9 +19,9 @@ $order = query("SELECT * FROM tb_order");
 
 $message = '';
 
-if(isset($_GET['id'])){
+if(isset($_GET['confirm_oid'])){
 
-    if(confirmOrderIn($_GET['id']) > 0) {
+    if(confirmOrderIn($_GET['confirm_oid']) > 0) {
         // echo "<script>alert('Pesanan berhasil dikonfirmasi!');</script>";
         $message = '<div class="alert alert-primary" role="alert">Pesanan berhasil dikonfirmasi</div>';
         
@@ -75,8 +75,10 @@ if(isset($_GET['id'])){
         <p>Nama Pelanggan: <?= $userName ?></p>
         <p>Kuantitas: <?= $row['qty'] ?></p>
         <p>Tipe Antar: <?= $row['tipe_antar'] ?></p>
-        <a href="order_in.php?id=<?= $row['id_order']; ?>" onclick="return confirm('Konfirmasi pesanan?');"
+        <a href="order_in.php?confirm_oid=<?= $row['id_order']; ?>" onclick="return confirm('Konfirmasi pesanan?');"
             class="btn btn-primary">Konfirmasi Pesanan</a>
+        <a href="order_in.php?reject_oid=<?= $row['id_order']; ?>" onclick="return confirm('Tolak pesanan?');"
+            class="btn btn-secondary">Tolak Pesanan</a>
     </div>
     <?php $i++; ?>
     <?php endif ?>
