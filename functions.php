@@ -138,6 +138,9 @@ function confirmOrderSent($data) {
     var_dump($oid);
 
     mysqli_query($conn, "UPDATE tb_order SET status = 5 WHERE id_order = '$oid'");
+    mysqli_query($conn, "UPDATE tb_transaksi SET status = 4 WHERE id_order = '$oid'");
+
+    return mysqli_affected_rows($conn);
 }
 
 function checkUser($data) {
