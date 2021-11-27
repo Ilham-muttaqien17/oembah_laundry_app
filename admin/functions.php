@@ -105,7 +105,7 @@ function confirmOrderIn($idOrder) {
     $order_id = $oid;
 
     mysqli_query($conn, "UPDATE tb_order SET status = 2 WHERE id_order = '$order_id'");
-    mysqli_query($conn, "UPDATE tb_transaksi SET status = 3 WHERE id_order = '$order_id'");
+    mysqli_query($conn, "UPDATE tb_transaksi SET status_transaksi = 3 WHERE id_order = '$order_id'");
 
     return mysqli_affected_rows($conn);
 }
@@ -166,7 +166,7 @@ function rejectOrder($reject_id) {
     $oid = $reject_id;
     var_dump($oid);
 
-    mysqli_query($conn, "UPDATE tb_transaksi SET status = 1 WHERE id_order = '$oid'");
+    mysqli_query($conn, "UPDATE tb_transaksi SET status_transaksi = 1 WHERE id_order = '$oid'");
 
     mysqli_query($conn, "UPDATE tb_order SET status = 6 WHERE id_order = '$oid'");
 

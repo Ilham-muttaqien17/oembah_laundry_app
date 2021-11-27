@@ -34,7 +34,7 @@ if(isset($_GET['confirm'])) {
     header('location: orders.php');
 }
 
-$order = query("SELECT * FROM tb_order");
+$order = query("SELECT * FROM tb_order INNER JOIN tb_transaksi ON tb_order.id_order = tb_transaksi.id_order");
 
 ?>
 
@@ -80,6 +80,7 @@ $order = query("SELECT * FROM tb_order");
                 <?php $laundryName = getLaundryName($row['id_laundry']) ?>
                 <p class="card-text">Nama Laundry: <?= $laundryName ?></p>
                 <p class="card-text">Kuantitas: <?= $row['qty'] ?></p>
+                <p class="card-text">Total Biaya: <?= $row['total_biaya'] ?></p>
                 <p class="card-text">Tipe Antar: <?= $row['tipe_antar'] ?></p>
                 <p class="card-text">Status: <?= $row['status'] ?></p>
                 <?php if($row['status'] == "Waiting") : ?>
