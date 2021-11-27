@@ -21,6 +21,7 @@ $message = '';
 
 if(isset($_GET['confirm_oid'])){
 
+
     if(confirmOrderIn($_GET['confirm_oid']) > 0) {
         // echo "<script>alert('Pesanan berhasil dikonfirmasi!');</script>";
         $message = '<div class="alert alert-primary" role="alert">Pesanan berhasil dikonfirmasi</div>';
@@ -30,7 +31,15 @@ if(isset($_GET['confirm_oid'])){
     }
     header('location: order_in.php');
 }
-// var_dump($message);
+
+if(isset($_GET['reject_oid'])) {
+    if(rejectOrder($_GET['reject_oid']) > 0) {
+        echo "<script>alert('Pesanan berhasil ditolak!');</script>";
+    } else {
+        echo "<script>alert('Pesanan gagal ditolak!');</script>";
+    }
+    header('location: order_in.php');
+}
 
 ?>
 

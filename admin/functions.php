@@ -160,4 +160,16 @@ function getUserName($data){
     return $lid;
 }
 
+function rejectOrder($reject_id) {
+    global $conn;
+    $oid = $reject_id;
+    var_dump($oid);
+
+    mysqli_query($conn, "UPDATE tb_transaksi SET status = 1 WHERE id_order = '$oid'");
+
+    mysqli_query($conn, "UPDATE tb_order SET status = 6 WHERE id_order = '$oid'");
+
+    return mysqli_affected_rows($conn);
+}
+
 ?>
