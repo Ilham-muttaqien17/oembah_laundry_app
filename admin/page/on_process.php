@@ -52,9 +52,10 @@ if(isset($_GET['id'])){
     <?php if($row['status'] == 'Confirmed') : ?>
     <div class="card my-4 w-25">
         <p>Order ID: <?= $row['id_order'] ?></p>
+        <?php $userName = getUserName($row['id_user'])?>
+        <p>Nama Pelanggan: <?= $userName ?></p>
         <p>Kuantitas: <?= $row['qty'] ?></p>
         <p>Tipe Antar: <?= $row['tipe_antar'] ?></p>
-        <p>User Id: <?= $row['id_user'] ?></p>
         <a href="on_process.php?id=<?= $row['id_order']; ?>" onclick="return confirm('Proses pesanan?');"
             class="btn btn-primary">Proses Pesanan</a>
     </div>

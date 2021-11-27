@@ -71,9 +71,10 @@ if(isset($_GET['id'])){
     <?php if($row['status'] == 'Waiting') : ?>
     <div class="card my-4 w-25">
         <p>Order ID: <?= $row['id_order'] ?></p>
+        <?php $userName = getUserName($row['id_user'])?>
+        <p>Nama Pelanggan: <?= $userName ?></p>
         <p>Kuantitas: <?= $row['qty'] ?></p>
         <p>Tipe Antar: <?= $row['tipe_antar'] ?></p>
-        <p>User Id: <?= $row['id_user'] ?></p>
         <a href="order_in.php?id=<?= $row['id_order']; ?>" onclick="return confirm('Konfirmasi pesanan?');"
             class="btn btn-primary">Konfirmasi Pesanan</a>
     </div>

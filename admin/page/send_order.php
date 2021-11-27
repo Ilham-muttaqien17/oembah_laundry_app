@@ -51,9 +51,10 @@ if(isset($_GET['id'])){
     <?php if($row['status'] == 'On Process') : ?>
     <div class="card my-4 w-25">
         <p>Order ID: <?= $row['id_order'] ?></p>
+        <?php $userName = getUserName($row['id_user'])?>
+        <p>Nama Pelanggan: <?= $userName ?></p>
         <p>Kuantitas: <?= $row['qty'] ?></p>
         <p>Tipe Antar: <?= $row['tipe_antar'] ?></p>
-        <p>User Id: <?= $row['id_user'] ?></p>
         <a href="send_order.php?id=<?= $row['id_order']; ?>" onclick="return confirm('Kirim pesanan?');"
             class="btn btn-primary">Kirim Pesanan</a>
     </div>

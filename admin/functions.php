@@ -148,4 +148,16 @@ function checkUser($data) {
     return $lid;
 }
 
+function getUserName($data){
+    global $conn;
+    $data = (int) $data;
+
+    $result = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user = '$data'");
+    $row = mysqli_fetch_assoc($result);
+
+    $lid = $row['nama_user'];
+
+    return $lid;
+}
+
 ?>
