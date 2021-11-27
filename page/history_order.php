@@ -14,26 +14,6 @@ if(isset($_COOKIE['user_email'])) {
     header('location: ../login.php');
 }
 
-if(isset($_GET['cancel'])) {
-    $cancel_id = $_GET['cancel'];
-    if(deleteRequest($cancel_id) > 0) {
-        echo "Pesanan Berhasil dibatalkan";
-    } else {
-        echo "Pesanan Gagal dibatalkan";
-    }
-    header('location: orders.php');
-}
-
-if(isset($_GET['confirm'])) {
-    $confirm_id = $_GET['confirm'];
-    if(confirmOrderSent($confirm_id) > 0) {
-        echo "Pesanan Berhasil dibatalkan";
-    } else {
-        echo "Pesanan Gagal dibatalkan";
-    }
-    header('location: orders.php');
-}
-
 $order = query("SELECT * FROM tb_order");
 
 ?>
@@ -45,7 +25,7 @@ $order = query("SELECT * FROM tb_order");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orders Page</title>
+    <title>History Order</title>
 
     <!-- Bootstrap 4.4 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -64,15 +44,14 @@ $order = query("SELECT * FROM tb_order");
 
 <body>
 
-    <h1>Halaman List Orders</h1>
+    <h1>Halaman History Orders</h1>
     <a class="btn btn-secondary mb-5" href="../index.php">Home</a>
 
     <div class="d-flex flex-row">
 
-        <?php $i = 0 ?>
         <?php foreach( array_reverse($order) as $row ) : ?>
         <?php if(checkUser($data) == $row['id_user']) :?>
-        <?php if($row['status'] !== 'Delivered') : ?>
+        <?php if($row['status'] == 'Delivered') : ?>
         <div class="card mx-4" style="width: 18rem;">
             <img class="card-img-top" src="https://via.placeholder.com/150" alt="">
             <div class="card-body">
@@ -93,23 +72,12 @@ $order = query("SELECT * FROM tb_order");
             </div>
         </div>
 
-        <?php $i++; ?>
         <?php endif; ?>
         <?php endif; ?>
         <?php endforeach; ?>
 
-        <?php
-            global $i;
-        
-            if($i <= 0){
-                echo "<p>Tidak ada pesanan yang anda buat</p>";
-            } else {
-                echo "<p>Terdapat $i pesanan yang anda buat</p>";
-            }
-            
-        ?>
-
     </div>
+
 </body>
 
 </html>

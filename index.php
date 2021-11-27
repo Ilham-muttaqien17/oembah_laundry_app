@@ -45,7 +45,7 @@ if(!isset($_COOKIE['user_email'])) {
     <h1>Welcome to Dashboard</h1>
     <div>
         <a class="btn btn-secondary" href="page/orders.php">Orders</a>
-        <a class="btn btn-secondary" href="#">History</a>
+        <a class="btn btn-secondary" href="page/history_order.php">History</a>
         <a class="btn btn-secondary" href="#">Notification</a>
     </div>
 
