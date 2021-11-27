@@ -69,12 +69,14 @@ $order = query("SELECT * FROM tb_order");
 
     <div class="d-flex flex-row">
         <?php $order = query("SELECT * FROM tb_order"); ?>
-        <?php foreach( $order as $row ) : ?>
+        <?php foreach( array_reverse($order) as $row ) : ?>
         <?php if(checkUser($data) == $row['id_user']) :?>
         <div class="card mx-4" style="width: 18rem;">
             <img class="card-img-top" src="https://via.placeholder.com/150" alt="">
             <div class="card-body">
                 <p class="card-text">Order ID: <?= $row['id_order'] ?></p>
+                <?php $laundryName = getLaundryName($row['id_laundry']) ?>
+                <p class="card-text">Nama Laundry: <?= $laundryName ?></p>
                 <p class="card-text">Kuantitas: <?= $row['qty'] ?></p>
                 <p class="card-text">Tipe Antar: <?= $row['tipe_antar'] ?></p>
                 <p class="card-text">Status: <?= $row['status'] ?></p>
@@ -84,7 +86,7 @@ $order = query("SELECT * FROM tb_order");
                 <?php endif ?>
                 <?php if($row['status'] == "On Delivery") : ?>
                 <a class="btn btn-primary" href="orders.php?confirm=<?=$row['id_order'] ?>"
-                    onclick="return confirm('Konfirmasi pesanan datang?');">Konfirmasi pesanan</a>'
+                    onclick="return confirm('Konfirmasi pesanan datang?');">Selesaikan Pesanan</a>'
                 <?php endif ?>
             </div>
         </div>

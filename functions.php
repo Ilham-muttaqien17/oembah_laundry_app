@@ -148,4 +148,16 @@ function checkUser($data) {
     return $lid;
 }
 
+function getLaundryName($data){
+    global $conn;
+    $data = (int) $data;
+
+    $result = mysqli_query($conn, "SELECT * FROM tb_laundry WHERE id_laundry = '$data'");
+    $row = mysqli_fetch_assoc($result);
+
+    $lid = $row['nama_laundry'];
+
+    return $lid;
+}
+
 ?>
