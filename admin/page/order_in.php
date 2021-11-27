@@ -20,8 +20,7 @@ $order = query("SELECT * FROM tb_order");
 $message = '';
 
 if(isset($_GET['confirm_oid'])){
-
-
+    
     if(confirmOrderIn($_GET['confirm_oid']) > 0) {
         // echo "<script>alert('Pesanan berhasil dikonfirmasi!');</script>";
         $message = '<div class="alert alert-primary" role="alert">Pesanan berhasil dikonfirmasi</div>';
