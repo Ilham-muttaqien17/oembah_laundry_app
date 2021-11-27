@@ -53,7 +53,7 @@ if(!isset($_COOKIE['user_email'])) {
 
     <div class="d-flex flex-row">
         <?php $laundry = query("SELECT * FROM tb_laundry"); ?>
-        <?php foreach( $laundry as $row ) : ?>
+        <?php foreach( array_reverse($laundry) as $row ) : ?>
         <div class="card mx-4" style="width: 18rem;">
             <img class="card-img-top" src="https://via.placeholder.com/150" alt="">
             <div class="card-body">

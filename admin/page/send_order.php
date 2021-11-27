@@ -46,7 +46,7 @@ if(isset($_GET['id'])){
 
 
     <?php $i = 0 ?>
-    <?php foreach($order as $row) : ?>
+    <?php foreach(array_reverse($order) as $row) : ?>
     <?php if(checkUser($data) == $row['id_laundry']) :?>
     <?php if($row['status'] == 'On Process') : ?>
     <div class="card my-4 w-25">

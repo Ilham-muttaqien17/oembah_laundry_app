@@ -47,7 +47,7 @@ $order = query("SELECT * FROM tb_order");
     <a class="btn btn-secondary mb-5" href="../index.php">Home</a>
 
     <?php $i = 0 ?>
-    <?php foreach($order as $row) : ?>
+    <?php foreach(array_reverse($order) as $row) : ?>
     <?php if(checkUser($data) == $row['id_laundry']) :?>
     <?php if($row['status'] == 'On Delivery') : ?>
     <div class="card my-4 w-25">
