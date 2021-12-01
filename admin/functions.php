@@ -200,5 +200,17 @@ function rejectOrder($reject_id) {
     return mysqli_affected_rows($conn);
 }
 
+function getContactUser($data){
+    global $conn;
+    $data = (int) $data;
+    
+    $result = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user = '$data'");
+    $row = mysqli_fetch_assoc($result);
+
+    $lid = $row['kontak'];
+
+    return $lid;
+}
+
 
 ?>

@@ -57,6 +57,10 @@ if(isset($_GET['id'])){
         <p>Tipe Antar: <?= $row['tipe_antar'] ?></p>
         <a href="send_order.php?id=<?= $row['id_order']; ?>" onclick="return confirm('Kirim pesanan?');"
             class="btn btn-primary">Kirim Pesanan</a>
+        <?php
+            $contactUser = getContactUser($row['id_user']); 
+            echo '<a href="https://wa.me/'. $contactUser. '">Chat Penjual</a>';
+        ?>
     </div>
     <?php $i++; ?>
     <?php endif ?>

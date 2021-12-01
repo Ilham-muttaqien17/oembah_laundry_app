@@ -87,6 +87,11 @@ if(isset($_GET['reject_oid'])) {
             class="btn btn-primary">Konfirmasi Pesanan</a>
         <a href="order_in.php?reject_oid=<?= $row['id_order']; ?>" onclick="return confirm('Tolak pesanan?');"
             class="btn btn-secondary">Tolak Pesanan</a>
+
+        <?php
+            $contactUser = getContactUser($row['id_user']); 
+            echo '<a href="https://wa.me/'. $contactUser. '">Chat Penjual</a>';
+        ?>
     </div>
     <?php $i++; ?>
     <?php endif ?>

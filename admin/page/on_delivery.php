@@ -56,6 +56,10 @@ $order = query("SELECT * FROM tb_order");
         <p>Nama Pelanggan: <?= $userName ?></p>
         <p>Kuantitas: <?= $row['qty'] ?></p>
         <p>Tipe Antar: <?= $row['tipe_antar'] ?></p>
+        <?php
+            $contactUser = getContactUser($row['id_user']); 
+            echo '<a href="https://wa.me/'. $contactUser. '">Chat Penjual</a>';
+        ?>
     </div>
     <?php $i++; ?>
     <?php endif ?>
