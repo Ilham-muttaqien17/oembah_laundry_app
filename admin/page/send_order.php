@@ -57,9 +57,16 @@ if(isset($_GET['id'])){
         <p>Tipe Antar: <?= $row['tipe_antar'] ?></p>
         <a href="send_order.php?id=<?= $row['id_order']; ?>" onclick="return confirm('Kirim pesanan?');"
             class="btn btn-primary">Kirim Pesanan</a>
+        <br>
         <?php
-            $contactUser = getContactUser($row['id_user']); 
+            $contactUser = getContactUser($row['id_user']);
+            $position = getUserPosition($row['id_user']);
+            $latitude = $position['latitude'];
+            $longitude = $position['longitude'];
+
             echo '<a href="https://wa.me/'. $contactUser. '">Chat User</a>';
+            echo '<br>';
+            echo '<a href="http://www.google.com/maps/place/'. $latitude. ',' . $longitude . '">Cek Alamat</a>'
         ?>
     </div>
     <?php $i++; ?>

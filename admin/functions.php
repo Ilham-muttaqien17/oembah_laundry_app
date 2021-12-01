@@ -212,5 +212,15 @@ function getContactUser($data){
     return $lid;
 }
 
+function getUserPosition($data){
+    global $conn;
+    $data = (int) $data;
+    
+    $result = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user = '$data'");
+    $row = mysqli_fetch_assoc($result);
+
+    return $row;
+}
+
 
 ?>
