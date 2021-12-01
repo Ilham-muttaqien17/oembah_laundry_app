@@ -60,7 +60,7 @@ if(isset($_GET['id'])){
             class="btn btn-primary">Proses Pesanan</a>
         <?php
             $contactUser = getContactUser($row['id_user']); 
-            echo '<a href="https://wa.me/'. $contactUser. '">Chat Penjual</a>';
+            echo '<a href="https://wa.me/'. $contactUser. '">Chat User</a>';
         ?>
     </div>
     <?php $i++; ?>

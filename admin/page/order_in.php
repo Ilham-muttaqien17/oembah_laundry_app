@@ -90,7 +90,7 @@ if(isset($_GET['reject_oid'])) {
 
         <?php
             $contactUser = getContactUser($row['id_user']); 
-            echo '<a href="https://wa.me/'. $contactUser. '">Chat Penjual</a>';
+            echo '<a href="https://wa.me/'. $contactUser. '">Chat User</a>';
         ?>
     </div>
     <?php $i++; ?>

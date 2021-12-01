@@ -60,7 +60,7 @@ $order = query("SELECT * FROM tb_order");
         <p>Tipe Antar: <?= $row['tipe_antar'] ?></p>
         <?php
             $contactUser = getContactUser($row['id_user']); 
-            echo '<a href="https://wa.me/'. $contactUser. '">Chat Penjual</a>';
+            echo '<a href="https://wa.me/'. $contactUser. '">Chat User</a>';
         ?>
     </div>
     <?php $i++; ?>
