@@ -40,6 +40,8 @@ function registerLaundry($data) {
     $password = validateData($data['password']);
     $confirm = validateData($data['confirm']);
     $alamat = validateData($data['alamat']);
+    $latitude = $data['latitude'];
+    $longitude = $data['longitude'];
     $biaya = $data['biaya'];
     $kontak = validateNumber(validateData($data['kontak']));   
     $jenis = $data['jenis'];
@@ -64,7 +66,7 @@ function registerLaundry($data) {
     $password = password_hash($password, PASSWORD_DEFAULT);
 
     //insert data to database
-    $query = "INSERT INTO tb_laundry VALUES('', '$name', '$email', '$password', '$alamat', '$biaya', '$kontak', '$jenis', '$open_time', '$close_time')";
+    $query = "INSERT INTO tb_laundry VALUES('', '$name', '$email', '$password', '$alamat', '$latitude', '$longitude', '$biaya', '$kontak', '$jenis', '$open_time', '$close_time')";
     mysqli_query($conn, $query);
     
 

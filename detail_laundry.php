@@ -67,7 +67,7 @@ if(isset($_COOKIE['user_email'])){
     <p>Jam Buka: <?= $laundry["jam_buka"] ?></p>
     <p>Jam Tutup: <?= $laundry["jam_tutup"] ?></p>
 
-
+ 
     <form id="form_order" action="" method="POST">
         <label for="qty">Jumlah kuantitas: </label>
         <input name="qty" type="numeric" id="qty" required>
