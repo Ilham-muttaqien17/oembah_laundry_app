@@ -66,7 +66,9 @@ if(isset($_COOKIE['user_email'])){
     <p>Tipe: <?= $laundry["tipe_laundry"] ?></p>
     <p>Jam Buka: <?= $laundry["jam_buka"] ?></p>
     <p>Jam Tutup: <?= $laundry["jam_tutup"] ?></p>
-
+    
+    <a href="https://wa.me/<?= $laundry["kontak"] ?>">Chat Penjual</a>
+    <br>
  
     <form id="form_order" action="" method="POST">
         <label for="qty">Jumlah kuantitas: </label>

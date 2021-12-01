@@ -91,6 +91,11 @@ $order = query("SELECT * FROM tb_order INNER JOIN tb_transaksi ON tb_order.id_or
                 <a class="btn btn-primary" href="orders.php?confirm=<?=$row['id_order'] ?>"
                     onclick="return confirm('Konfirmasi pesanan datang?');">Selesaikan Pesanan</a>
                 <?php endif ?>
+                <br>
+                <?php
+                    $laundry = getContactLaundry($row['id_laundry']);                    
+                    echo '<a href="https://wa.me/'. $laundry. '">Chat Penjual</a>';
+                ?>
             </div>
         </div>
 

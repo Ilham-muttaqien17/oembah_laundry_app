@@ -189,4 +189,16 @@ function addTransaction($id_laundry, $qty, $tgl_order){
     return mysqli_affected_rows($conn);
 }
 
+function getContactLaundry($data){
+    global $conn;
+    $data = (int) $data;
+
+    $result = mysqli_query($conn, "SELECT * FROM tb_laundry WHERE id_laundry = '$data'");
+    $row = mysqli_fetch_assoc($result);
+
+    $lid = $row['kontak'];
+
+    return $lid;
+}
+
 ?>
