@@ -9,6 +9,30 @@ function validateData($data) {
     return $data;
 }
 
+function validateNumber($number) {
+    // kadang ada penulisan no hp 0811 239 345
+    $number = str_replace(" ","",$number);
+    // kadang ada penulisan no hp (0274) 778787
+    $number = str_replace("(","",$number);
+    // kadang ada penulisan no hp (0274) 778787
+    $number = str_replace(")","",$number);
+    // kadang ada penulisan no hp 0811.239.345
+    $number = str_replace(".","",$number);
+
+    // cek apakah no hp mengandung karakter + dan 0-9
+    if(!preg_match('/[^+0-9]/',trim($number))){
+        // cek apakah no hp karakter 1-3 adalah 62
+        if(substr(trim($number), 0, 2)=='62'){
+            $numberValidated = trim($number);
+        }
+        // cek apakah no hp karakter 1 adalah 0
+        elseif(substr(trim($number), 0, 1)=='0'){
+            $numberValidated = '62'.substr(trim($number), 1);
+        }
+    }
+    return $numberValidated;
+}
+
 function registerLaundry($data) {
     global $conn;
     $name = validateData($data['name']);
@@ -17,10 +41,11 @@ function registerLaundry($data) {
     $confirm = validateData($data['confirm']);
     $alamat = validateData($data['alamat']);
     $biaya = $data['biaya'];
-    $kontak = validateData($data['kontak']);
+    $kontak = validateNumber(validateData($data['kontak']));   
     $jenis = $data['jenis'];
     $open_time = $data['open_time'];
     $close_time = $data['close_time'];
+
 
     //check if email is already use or not
     $result = mysqli_query($conn, "SELECT email FROM tb_laundry WHERE email = '$email'");

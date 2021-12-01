@@ -85,11 +85,11 @@ $order = query("SELECT * FROM tb_order INNER JOIN tb_transaksi ON tb_order.id_or
                 <p class="card-text">Status: <?= $row['status'] ?></p>
                 <?php if($row['status'] == "Waiting") : ?>
                 <a class="btn btn-primary" href="orders.php?cancel=<?=$row['id_order'] ?>"
-                    onclick="return confirm('Hapus permintaan pesanan?');">Hapus permintaan</a>'
+                    onclick="return confirm('Hapus permintaan pesanan?');">Hapus permintaan</a>
                 <?php endif ?>
                 <?php if($row['status'] == "On Delivery") : ?>
                 <a class="btn btn-primary" href="orders.php?confirm=<?=$row['id_order'] ?>"
-                    onclick="return confirm('Konfirmasi pesanan datang?');">Selesaikan Pesanan</a>'
+                    onclick="return confirm('Konfirmasi pesanan datang?');">Selesaikan Pesanan</a>
                 <?php endif ?>
             </div>
         </div>
