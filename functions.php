@@ -20,12 +20,40 @@ function query($query) {
     return $rows;
 }
 
+function validateNumber($number) {
+    // kadang ada penulisan no hp 0811 239 345
+    $number = str_replace(" ","",$number);
+    // kadang ada penulisan no hp (0274) 778787
+    $number = str_replace("(","",$number);
+    // kadang ada penulisan no hp (0274) 778787
+    $number = str_replace(")","",$number);
+    // kadang ada penulisan no hp 0811.239.345
+    $number = str_replace(".","",$number);
+
+    // cek apakah no hp mengandung karakter + dan 0-9
+    if(!preg_match('/[^+0-9]/',trim($number))){
+        // cek apakah no hp karakter 1-3 adalah 62
+        if(substr(trim($number), 0, 2)=='62'){
+            $numberValidated = trim($number);
+        }
+        // cek apakah no hp karakter 1 adalah 0
+        elseif(substr(trim($number), 0, 1)=='0'){
+            $numberValidated = '62'.substr(trim($number), 1);
+        }
+    }
+    return $numberValidated;
+}
+
 function registerUser($data) {
     global $conn;
     $name = validateData($data['name']);
     $email = validateData($data['email']);
     $password = validateData($data['password']);
     $confirm = validateData($data['confirm']);
+    $contact = validateNumber(validateData($data['kontak']));
+    $address = validateData($data['alamat']);
+    $latitude = $data['latitude'];
+    $longitude = $data['longitude'];
 
     //check if email is already use or not
     $result = mysqli_query($conn, "SELECT email FROM tb_user WHERE email = '$email'");
@@ -44,7 +72,7 @@ function registerUser($data) {
     $password = password_hash($password, PASSWORD_DEFAULT);
 
     //insert data to database
-    $query = "INSERT INTO tb_user VALUES('', '$name', '$email', '$password', '', '')";
+    $query = "INSERT INTO tb_user VALUES('', '$name', '$email', '$password', '$address', '$latitude', '$longitude', '$contact')";
     mysqli_query($conn, $query);
     
 
