@@ -26,14 +26,17 @@ function initialize() {
             let myLat = evt.latLng.lat().toFixed(6);
             let myLong = evt.latLng.lng().toFixed(6);
 
-            const geoApiUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${myLat}&longitude=${myLong}&localityLanguage=id`;
+            // const geoApiUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${myLat}&longitude=${myLong}&localityLanguage=id`;
 
-            fetch(geoApiUrl)
+            const geocodeApiReverse = `https://nominatim.openstreetmap.org/reverse.php?lat=${myLat}&lon=${myLong}&format=jsonv2`;
+
+            fetch(geocodeApiReverse)
                 .then((res) => res.json())
                 .then((data) => {
-                    console.log(data);
-                    var lengtAdministrative = Object.keys(data.localityInfo.administrative);
-                    $("#alamat").val(data.localityInfo.administrative[lengtAdministrative.length - 1].name + ", " + data.localityInfo.administrative[lengtAdministrative.length - 2].name);
+                    // console.log(data);
+                    // var lengtAdministrative = Object.keys(data.localityInfo.administrative);
+                    // $("#alamat").val(data.localityInfo.administrative[lengtAdministrative.length - 1].name + ", " + data.localityInfo.administrative[lengtAdministrative.length - 2].name);
+                    $("#alamat").val(data.display_name);
                 });
 
             map.panTo(evt.latLng);
