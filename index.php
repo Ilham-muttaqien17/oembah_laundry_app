@@ -61,20 +61,31 @@ if(!isset($_COOKIE['user_email'])) {
     <a href="logout.php">Logout</a>
 
     <div class="d-flex flex-row">
-        <?php $laundry = query("SELECT * FROM tb_laundry"); ?>
-        <?php foreach( array_reverse($laundry) as $row ) : ?>
-        <div class="card mx-4" style="width: 18rem;">
-            <img class="card-img-top" src="https://via.placeholder.com/150" alt="">
-            <div class="card-body">
-                <p class="card-text">Nama Laundry: <?= $row['nama_laundry']; ?></p>
-                <p class="card-text">Tipe Laundry: <?= $row['tipe_laundry']; ?></p>
-                <p class="card-text">Alamat Laundry: <?= $row['alamat']; ?></p>
-                <a class="btn btn-primary" href="detail_laundry.php?id=<?php echo $row['id_laundry']; ?>">Detail</a>
+        <?php 
+            $laundry = query("SELECT * FROM tb_laundry"); 
+            $data = getDistanceLaundry($_COOKIE['user_email']);
 
+            usort($data, function($a, $b) {
+                return $a['distance'] > $b['distance'] ? 1 : -1;
+            });
+
+
+        ?>
+
+        <!-- Show all data laundry with shortest distance -->
+        <?php for($i = 0; $i < sizeof($data); $i++) : ?>
+            <div class="card mx-4" style="width: 18rem;">
+                <img class="card-img-top" src="https://via.placeholder.com/150" alt="">
+                <div class="card-body">
+                    <p class="card-text">Nama Laundry: <?= $data[$i]['data']['nama_laundry']; ?></p>
+                    <p class="card-text">Tipe Laundry: <?= $data[$i]['data']['tipe_laundry']; ?></p>
+                    <p class="card-text">Jarak Laundry: <?= $data[$i]['distance'] . ' Km'; ?></p>
+                    <p class="card-text">Alamat Laundry: <?= $data[$i]['data']['alamat']; ?></p>
+                    <a class="btn btn-primary" href="detail_laundry.php?id=<?php echo $data[$i]['data']['id_laundry']; ?>">Detail</a>
+                </div>
             </div>
-        </div>
+        <?php endfor; ?>
 
-        <?php endforeach;?>
     </div>
 
     <?php 

@@ -229,4 +229,38 @@ function getContactLaundry($data){
     return $lid;
 }
 
+function calculateDistance($lat1, $long1, $lat2, $long2){
+    $theta = $long1 - $long2;
+    $miles = (sin(deg2rad($lat1))) * sin(deg2rad($lat2)) + (cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta)));
+    $miles = acos($miles);
+    $miles = rad2deg($miles);
+    $result = $miles * 60 * 1.1515 * 1.609344;
+    $distance = round($result, 1);
+    return $distance;
+}
+
+function getDistanceLaundry($email) {
+    global $conn;
+
+    $query = mysqli_query($conn, "SELECT * FROM tb_user WHERE email = '$email'");
+    $result = mysqli_fetch_assoc($query);
+    $userLat = (float)$result['latitude'];
+    $userLong = (float)$result['longitude'];
+
+    $query2 = mysqli_query($conn, "SELECT * FROM tb_laundry");
+    $rows = [];
+    while($row = mysqli_fetch_assoc($query2)) {
+        $rows[] = $row;
+    }
+
+    $data = array();
+    for($i = 0; $i < sizeof($rows); $i++){
+        $distance = calculateDistance($userLat, $userLong, (float) $rows[$i]['latitude'], (float) $rows[$i]['longitude']);
+        // $data[$i] = array('distance' => $distance, 'data' => $rows[$i]);
+        array_push($data, array('distance' => $distance, 'data' => $rows[$i]));
+    }
+
+    return $data;
+}
+
 ?>
