@@ -19,7 +19,7 @@ if(isset($_POST['search'])) {
 }
 
 $laundry = query("SELECT * FROM tb_laundry"); 
-
+$user = getUserProfile($_COOKIE['user_email']);
 
 
 ?>
@@ -75,6 +75,16 @@ $laundry = query("SELECT * FROM tb_laundry");
 
 <body>
     <h1>Welcome to Dashboard</h1>
+
+
+    <div>
+        <a href="./page/profile.php?uid=<?= $user['id_user'];?>">
+            <span><?= $user['nama_user'];?></span>
+            <img class="rounded-circle" style="width: 50px; height: 50px;" src="./img/<?= !empty($user['image']) ? $user['image'] : 'default_profile.png'?>" alt="Profile Image">
+        </a>
+    </div>
+
+
     <div>
         <a class="btn btn-secondary" href="page/orders.php">Orders</a>
         <a class="btn btn-secondary" href="page/history_order.php">History</a>

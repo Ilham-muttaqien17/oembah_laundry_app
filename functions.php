@@ -279,4 +279,30 @@ function searchLaundry($keyword) {
     
 }
 
+function getUserProfile($data) {
+    global $conn;
+    $query = "SELECT * FROM tb_user WHERE email = '$data' OR id_user = '$data'";
+    $result = mysqli_query($conn, $query);
+
+    $row = mysqli_fetch_assoc($result);
+
+    return $row;
+}
+
+function editUserProfile($data, $uid) {
+    global $conn;
+
+    $name = validateData($data['name']);
+    $contact = validateNumber(validateData($data['kontak']));
+    $address = validateData($data['alamat']);
+    $latitude = $data['latitude'];
+    $longitude = $data['longitude'];
+
+    $query = "UPDATE tb_user SET nama_user = '$name', kontak = '$contact', alamat = '$address', latitude = '$latitude', longitude = '$longitude' WHERE id_user = '$uid'";
+    mysqli_query($conn, $query);
+    
+
+    return mysqli_affected_rows($conn);
+}
+
 ?>
