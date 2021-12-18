@@ -13,6 +13,14 @@ if(!isset($_COOKIE['user_email'])) {
     header('location: login.php');
 }
 
+if(isset($_POST['search'])) {
+    $data = searchLaundry($_POST['keyword']);
+    var_dump($data);
+}
+
+$laundry = query("SELECT * FROM tb_laundry"); 
+
+
 
 ?>
 
@@ -39,7 +47,22 @@ if(!isset($_COOKIE['user_email'])) {
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
 
-    <script type="text/javascript" src="js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <!-- <script src="js/script.js"></script> -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#keyword").on("keyup", function () {
+                //Ajax usong load
+                // $("#container").load("laundry.php?keyword=" + $("#keyword").val());
+
+                //$.get()
+                $.get('laundry.php?keyword=' + $("#keyword").val(), function(data) {
+                    $("#container").html(data);
+                })
+
+            });
+        })
+    </script>
     
     <style>
         #allPositions, #userPosition {
@@ -60,9 +83,15 @@ if(!isset($_COOKIE['user_email'])) {
 
     <a href="logout.php">Logout</a>
 
+    <form action="" method="POST">
+        <input type="text" name="keyword" id="keyword">
+        <button type="submit" name="search" id="btn-search">Search Laundry</button>
+    </form>
+    <div id="container" class=""></div>
+
     <div class="d-flex flex-row">
         <?php 
-            $laundry = query("SELECT * FROM tb_laundry"); 
+            // $laundry = query("SELECT * FROM tb_laundry"); 
             $data = getDistanceLaundry($_COOKIE['user_email']);
 
             usort($data, function($a, $b) {

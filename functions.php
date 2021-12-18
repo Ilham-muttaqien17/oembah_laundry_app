@@ -263,4 +263,20 @@ function getDistanceLaundry($email) {
     return $data;
 }
 
+function searchLaundry($keyword) {
+
+    $keyword = validateData($keyword);
+    if(strlen($keyword) > 0) {
+        $query = "SELECT * FROM tb_laundry WHERE 
+                nama_laundry LIKE '%$keyword%' OR
+                email LIKE '%$keyword%' OR
+                alamat LIKE '%$keyword%' OR
+                tipe_laundry LIKE '%$keyword%'
+            ";
+
+    return query($query);
+    }
+    
+}
+
 ?>
