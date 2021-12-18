@@ -81,8 +81,8 @@ function registerUser($data) {
 
 function loginUser($data){
     global $conn;
-    $email = $data['email'];
-    $password = $data['password'];
+    $email = validateData($data['email']);
+    $password = validateData($data['password']);
 
     $result = mysqli_query($conn, "SELECT * FROM tb_user WHERE email = '$email'");
 
