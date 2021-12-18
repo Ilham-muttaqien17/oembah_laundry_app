@@ -3,8 +3,8 @@
 $conn = mysqli_connect("localhost", "root", "", "db_oembah");
 
 function validateData($data) {
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
+    global $conn;
+    $data = mysqli_real_escape_string($conn, $data);
 
     return $data;
 }
@@ -66,7 +66,7 @@ function registerLaundry($data) {
     $password = password_hash($password, PASSWORD_DEFAULT);
 
     //insert data to database
-    $query = "INSERT INTO tb_laundry VALUES('', '$name', '$email', '$password', '$alamat', '$latitude', '$longitude', '$biaya', '$kontak', '$jenis', '$open_time', '$close_time')";
+    $query = "INSERT INTO tb_laundry VALUES('', '$name', '$email', '$password', '$alamat', '$latitude', '$longitude', '$biaya', '$kontak', '$jenis', '$open_time', '$close_time', '')";
     mysqli_query($conn, $query);
     
 
@@ -75,8 +75,8 @@ function registerLaundry($data) {
 
 function loginLaundry($data){
     global $conn;
-    $email = $data['email'];
-    $password = $data['password'];
+    $email = validateData($data['email']);
+    $password = validateData($data['password']);
 
     $result = mysqli_query($conn, "SELECT * FROM tb_laundry WHERE email = '$email'");
 

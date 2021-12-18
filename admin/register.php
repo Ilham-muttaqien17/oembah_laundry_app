@@ -69,6 +69,7 @@ if(isset($_POST['register'])){
                     <option value="Kiloan">Kiloan</option>
                     <option value="Sepatu">Sepatu</option>
                     <option value="Helm">Helm</option>
+                    <option value="Hotel">Hotel</option>
                 </select>
             </li>
             <li>
