@@ -78,16 +78,16 @@ $user = getUserProfile($_COOKIE['user_email']);
 
 
     <div>
-        <a href="./page/profile.php?uid=<?= $user['id_user'];?>">
+        <a href="./profile.php?uid=<?= $user['id_user'];?>">
             <span><?= $user['nama_user'];?></span>
-            <img class="rounded-circle" style="width: 50px; height: 50px;" src="./img/<?= !empty($user['image']) ? $user['image'] : 'default_profile.png'?>" alt="Profile Image">
+            <img class="rounded-circle" style="width: 50px; height: 50px;" src="../img/<?= !empty($user['image']) ? $user['image'] : 'default_profile.png'?>" alt="Profile Image">
         </a>
     </div>
 
 
     <div>
-        <a class="btn btn-secondary" href="page/orders.php">Orders</a>
-        <a class="btn btn-secondary" href="page/history_order.php">History</a>
+        <a class="btn btn-secondary" href="./orders.php">Orders</a>
+        <a class="btn btn-secondary" href="./history_order.php">History</a>
         <a class="btn btn-secondary" href="#">Notification</a>
     </div>
 
@@ -199,7 +199,7 @@ $user = getUserProfile($_COOKIE['user_email']);
                 var linkDetail = document.createElement('a');
                 bold.textContent = data.nama_laundry;
                 paragraf.textContent = data.alamat;
-                linkDetail.href = 'http://localhost/FP-PWL/detail_laundry.php?id=' + parseInt(data.id_laundry);
+                linkDetail.href = 'http://localhost/FP-PWL/page/detail_laundry.php?id=' + parseInt(data.id_laundry);
                 linkDetail.textContent = 'Cek Laundry'
                 contentBoxLaundry.style.maxWidth = '150px';
                 contentBoxLaundry.style.maxHeight = '100%';

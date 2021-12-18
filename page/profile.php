@@ -48,6 +48,7 @@ $user = getUserProfile($_GET['uid']);
         
         <div>
             <h2>Profile User</h2>
+            <a href="./index.php">Home</a>
             <form action="" method="POST">
                 <ul>
                     <li>

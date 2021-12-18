@@ -45,7 +45,7 @@ $order = query("SELECT * FROM tb_order INNER JOIN tb_transaksi ON tb_order.id_or
 <body>
 
     <h1>Halaman History Orders</h1>
-    <a class="btn btn-secondary mb-5" href="../index.php">Home</a>
+    <a class="btn btn-secondary mb-5" href="./index.php">Home</a>
 
     <div class="d-flex flex-row">
 
