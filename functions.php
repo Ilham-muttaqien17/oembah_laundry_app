@@ -3,9 +3,9 @@
 $conn = mysqli_connect("localhost", "root", "", "db_oembah");
 
 function validateData($data) {
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-
+    global $conn;
+    $data = mysqli_real_escape_string($conn,$data);
+    
     return $data;
 }
 
@@ -72,7 +72,7 @@ function registerUser($data) {
     $password = password_hash($password, PASSWORD_DEFAULT);
 
     //insert data to database
-    $query = "INSERT INTO tb_user VALUES('', '$name', '$email', '$password', '$address', '$latitude', '$longitude', '$contact')";
+    $query = "INSERT INTO tb_user VALUES('', '$name', '$email', '$password', '$address', '$latitude', '$longitude', '$contact', '')";
     mysqli_query($conn, $query);
     
 
