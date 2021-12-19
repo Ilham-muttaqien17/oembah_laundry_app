@@ -289,7 +289,7 @@ function getUserProfile($data) {
     return $row;
 }
 
-function editUserProfile($data, $uid) {
+function editUserProfile($data, $uid, $img) {
     global $conn;
 
     $name = validateData($data['name']);
@@ -297,12 +297,60 @@ function editUserProfile($data, $uid) {
     $address = validateData($data['alamat']);
     $latitude = $data['latitude'];
     $longitude = $data['longitude'];
+    $oldImage = $data['old_profile'];
 
-    $query = "UPDATE tb_user SET nama_user = '$name', kontak = '$contact', alamat = '$address', latitude = '$latitude', longitude = '$longitude' WHERE id_user = '$uid'";
+    //Check if user select new img profile
+    if($img['error'] === 4) {
+        $image = $oldImage;
+    } else {
+        $image = uploadImage($img);
+    }
+
+    if(!$image) {
+        return false;
+    }
+
+    $query = "UPDATE tb_user SET nama_user = '$name', kontak = '$contact', alamat = '$address', latitude = '$latitude', longitude = '$longitude', image = '$image' WHERE id_user = '$uid'";
     mysqli_query($conn, $query);
     
 
     return mysqli_affected_rows($conn);
+}
+
+function uploadImage($img){
+    $fileName = $img['name'];
+    $sizeFile = $img['size'];
+    $error = $img['error'];
+    $tmpFile = $img['tmp_name'];
+
+    //Check is there a valid image
+    $validExtensionFile = ['jpg', 'jpeg', 'png', 'gif'];
+    $extensionFile = explode('.', $fileName);
+    $extensionFile = strtolower(end($extensionFile));
+
+    if(!in_array($extensionFile, $validExtensionFile)) {
+        echo "<script>alert('Mohon upload gambar yang valid')</script>";
+        return false;
+    }
+
+    //Check if the file size is to large
+    if($sizeFile > 2000000) {
+        echo "<script>alert('Maksimal gambar beruukuran 2 MB')</script>";
+        return false;
+    }
+
+    //Generate new file name
+    $newFileName = date("dmY") . '_' . uniqid() . '.' . $extensionFile;
+
+
+    //Move uploaded file to database
+    $destination = '../img/profile/';
+
+    move_uploaded_file($tmpFile, $destination . $newFileName);
+
+    return $newFileName;
+
+
 }
 
 ?>

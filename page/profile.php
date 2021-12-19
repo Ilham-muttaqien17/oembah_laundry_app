@@ -14,20 +14,24 @@ if(!isset($_COOKIE['user_email'])) {
     header('location: ../login.php');
 }
 
+$user = getUserProfile($_GET['uid']);
+
+
 if(isset($_POST['edit'])) {
-    if(editUserProfile($_POST, $_GET['uid']) > 0) {
+    if(editUserProfile($_POST, $_GET['uid'], $_FILES['img_profile']) > 0) {
         echo "<script>
         alert('Berhasil mengubah profile!');
         </script>";
+        header('location: profile.php?uid='.$_GET["uid"]);
     } else {
         echo "<script>
         alert('Gagal mengubah profile!');
         </script>";
+        header('location: profile.php?uid='.$_GET["uid"]);
         echo mysqli_error($conn);
     }
 }
 
-$user = getUserProfile($_GET['uid']);
 
 
 ?>
@@ -48,8 +52,9 @@ $user = getUserProfile($_GET['uid']);
         
         <div>
             <h2>Profile User</h2>
-            <a href="./index.php">Home</a>
-            <form action="" method="POST">
+            <a href="./index.php">Home</a><br>
+            <img style="width: 50px; height: 50px;" src="<?= !empty($user['image']) ? '../img/profile/'.$user['image'] : '../img/default_profile.png'?>" alt="Profile Image">
+            <form action="" method="POST" enctype="multipart/form-data">
                 <ul>
                     <li>
                         <label for="name">Nama: </label>
@@ -58,6 +63,13 @@ $user = getUserProfile($_GET['uid']);
                     <li>
                         <label for="email">Email: </label>
                         <input type="email" name="email" value="<?= $user['email']?>" id="email" required disabled>
+                    </li>
+                    <li>
+                        <label for="img_profile">Upload Foto Profile</label>
+                        <input type="file" name="img_profile" id="img_profile">
+
+                        <!-- Hidden input -->
+                        <input type="hidden" name="old_profile" value="<?= $user['image']?>">
                     </li>
                     <li>
                         <label for="kontak">Kontak: </label>

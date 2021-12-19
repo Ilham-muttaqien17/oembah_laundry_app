@@ -52,9 +52,6 @@ $user = getUserProfile($_COOKIE['user_email']);
     <script type="text/javascript">
         $(document).ready(function() {
             $("#keyword").on("keyup", function () {
-                //Ajax usong load
-                // $("#container").load("laundry.php?keyword=" + $("#keyword").val());
-
                 //$.get()
                 $.get('laundry.php?keyword=' + $("#keyword").val(), function(data) {
                     $("#container").html(data);
@@ -80,7 +77,7 @@ $user = getUserProfile($_COOKIE['user_email']);
     <div>
         <a href="./profile.php?uid=<?= $user['id_user'];?>">
             <span><?= $user['nama_user'];?></span>
-            <img class="rounded-circle" style="width: 50px; height: 50px;" src="../img/<?= !empty($user['image']) ? $user['image'] : 'default_profile.png'?>" alt="Profile Image">
+            <img class="rounded-circle" style="width: 50px; height: 50px;" src="../img/<?= !empty($user['image']) ? '../img/profile/'.$user['image'] : 'default_profile.png'?>" alt="Profile Image">
         </a>
     </div>
 
