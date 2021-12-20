@@ -309,10 +309,10 @@ function editUserProfile($data, $uid, $img) {
     if(!$image) {
         return false;
     }
+    
 
     $query = "UPDATE tb_user SET nama_user = '$name', kontak = '$contact', alamat = '$address', latitude = '$latitude', longitude = '$longitude', image = '$image' WHERE id_user = '$uid'";
     mysqli_query($conn, $query);
-    
 
     return mysqli_affected_rows($conn);
 }

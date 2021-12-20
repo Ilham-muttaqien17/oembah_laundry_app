@@ -73,7 +73,7 @@ $user = getUserProfile($_COOKIE['user_email']);
 <body>
     <h1>Welcome to Dashboard</h1>
 
-
+    <!-- Profile -->
     <div>
         <a href="./profile.php?uid=<?= $user['id_user'];?>">
             <span><?= $user['nama_user'];?></span>
@@ -81,7 +81,7 @@ $user = getUserProfile($_COOKIE['user_email']);
         </a>
     </div>
 
-
+    <!-- Navigation -->
     <div>
         <a class="btn btn-secondary" href="./orders.php">Orders</a>
         <a class="btn btn-secondary" href="./history_order.php">History</a>
@@ -90,15 +90,18 @@ $user = getUserProfile($_COOKIE['user_email']);
 
     <a href="logout.php">Logout</a>
 
+    <!-- Search Laundry -->
     <form action="" method="POST">
         <input type="text" name="keyword" id="keyword">
         <button type="submit" name="search" id="btn-search">Search Laundry</button>
     </form>
     <div id="container" class=""></div>
 
+
+
     <div class="d-flex flex-row">
+        <!-- Get laundry distance -->
         <?php 
-            // $laundry = query("SELECT * FROM tb_laundry"); 
             $data = getDistanceLaundry($_COOKIE['user_email']);
 
             usort($data, function($a, $b) {

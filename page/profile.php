@@ -16,18 +16,15 @@ if(!isset($_COOKIE['user_email'])) {
 
 $user = getUserProfile($_GET['uid']);
 
+$message = null;
 
 if(isset($_POST['edit'])) {
     if(editUserProfile($_POST, $_GET['uid'], $_FILES['img_profile']) > 0) {
-        echo "<script>
-        alert('Berhasil mengubah profile!');
-        </script>";
-        header('location: profile.php?uid='.$_GET["uid"]);
+        $message = 'true';
+        header('location: profile.php?uid='.$_GET["uid"].'&status_edit='.$message);
     } else {
-        echo "<script>
-        alert('Gagal mengubah profile!');
-        </script>";
-        header('location: profile.php?uid='.$_GET["uid"]);
+        $message = 'false';
+        header('location: profile.php?uid='.$_GET["uid"].'&status_edit='.$message);
         echo mysqli_error($conn);
     }
 }
@@ -53,16 +50,27 @@ if(isset($_POST['edit'])) {
         <div>
             <h2>Profile User</h2>
             <a href="./index.php">Home</a><br>
+            <p><?= !empty($message) ? $_GET['status_edit'] : $message?></p><br>
+            <?php
+                if(isset($_GET['status_edit'])){
+                    if($_GET['status_edit'] == 'true') {
+                        $message = "<b>Berhasil mengubah data</b><br>";
+                    } else {
+                        $message = "<b>Tidak ada data yang berubah</b><br>";
+                    }
+                }
+            ?>
+            <?= $message?>
             <img style="width: 50px; height: 50px;" src="<?= !empty($user['image']) ? '../img/profile/'.$user['image'] : '../img/default_profile.png'?>" alt="Profile Image">
             <form action="" method="POST" enctype="multipart/form-data">
                 <ul>
                     <li>
                         <label for="name">Nama: </label>
-                        <input type="text" name="name" value="<?= $user['nama_user']?>" id="name" required>
+                        <input type="text" name="name" value="<?= $user['nama_user']?>" id="name">
                     </li>
                     <li>
                         <label for="email">Email: </label>
-                        <input type="email" name="email" value="<?= $user['email']?>" id="email" required disabled>
+                        <input type="email" name="email" value="<?= $user['email']?>" id="email" disabled>
                     </li>
                     <li>
                         <label for="img_profile">Upload Foto Profile</label>
@@ -73,11 +81,11 @@ if(isset($_POST['edit'])) {
                     </li>
                     <li>
                         <label for="kontak">Kontak: </label>
-                        <input type="text" name="kontak" value="<?= $user['kontak']?>" id="kontak" required>
+                        <input type="text" name="kontak" value="<?= $user['kontak']?>" id="kontak">
                     </li>
                     <li>
                         <label for="alamat">Alamat: </label>
-                        <input type="text" name="alamat" value="<?= $user['alamat']?>" id="alamat" readonly required>
+                        <input type="text" name="alamat" value="<?= $user['alamat']?>" id="alamat" readonly>
                         <label for="latitude">Latitude</label>
                         <input type="text" name="latitude" value="<?= $user['latitude']?>" id="latitude" readonly>
                         <label for="longitude">Longitude</label>
