@@ -1,3 +1,266 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    * {
+        @apply p-0 m-0 font-poppins;
+    }
+
+    /* Registrasi Page */
+    .regis-form {
+        @apply bg-dark-blue
+        w-11/12
+        sm:w-8/12
+        md:w-7/12
+        lg:w-6/12
+        px-10
+        rounded-lg
+        py-16
+        mt-24
+        mb-10
+        mx-auto
+        shadow-lg;
+    }
+
+    .regis-form ul {
+        @apply grid 
+        grid-cols-1
+        lg:grid-cols-2
+        gap-4;
+    }
+
+    .regis-form ul li {
+        @apply space-y-1;
+    }
+
+    .logo {
+        @apply w-24 h-24 absolute top-12 left-2/4 translate-x-[-50%];
+    }
+
+    .title {
+        @apply mx-auto text-2xl mb-10 font-semibold text-dark-blue;
+    }
+
+    .label {
+        @apply text-xs text-gray-200;
+    }
+
+    .form-input {
+        @apply bg-white  
+        px-4 
+        py-2
+        text-sm
+        rounded
+        outline-none 
+        w-full 
+        border-b-2  
+        focus:border-b-2 
+        focus:border-violet-500;
+    }
+
+    .btn-register {
+        @apply w-full lg:w-8/12 h-12
+        text-lg
+        bg-white
+        text-dark-blue
+        font-semibold 
+        rounded-lg
+        border
+        border-dark-blue 
+        shadow-xl 
+        shadow-dark-blue/30 
+        hover:bg-dark-blue
+        hover:text-white
+        hover:border-white
+        hover:border
+        hover:ring-violet-500
+        hover:ring-1;
+    }
+
+    #map_canvas {
+        @apply w-full h-[250px] lg:h-[350px] mt-4 rounded;
+    }
+
+    #latitude,
+    #longitude {
+        @apply hidden;
+    }
+
+    /* Login Page */
+    .login-form {
+        @apply bg-dark-blue
+        w-11/12
+        sm:w-7/12
+        md:w-6/12
+        lg:w-4/12
+        xl:w-3/12
+        px-10
+        rounded-lg
+        py-16
+        mt-24
+        mb-10
+        mx-auto
+        shadow-lg;
+    }
+
+    .login-form ul {
+        @apply space-y-4;
+    }
+    .login-form ul li {
+        @apply space-y-2;
+    }
+
+    .btn-login {
+        @apply w-full xl:w-8/12 h-12
+        text-lg
+        bg-white
+        text-dark-blue
+        font-semibold 
+        rounded-lg
+        border
+        border-dark-blue 
+        shadow-xl 
+        shadow-dark-blue/30 
+        hover:bg-dark-blue
+        hover:text-white
+        hover:border-white
+        hover:border
+        hover:ring-violet-500
+        hover:ring-1;
+    }
+
+    /* Navbar */
+
+    .nav-user {
+        @apply sticky top-0 py-4 bg-gray-soft z-10;
+    }
+
+    .nav-content {
+        @apply w-11/12 lg:w-10/12 mx-auto flex items-center justify-between;
+    }
+
+    .nav-left-side {
+        @apply flex items-center space-x-20;
+    }
+
+    .nav-links {
+        @apply flex items-center space-x-16;
+    }
+
+    .nav-link {
+        @apply text-dark-blue font-semibold text-lg hover:border-b-2 hover:border-dark-blue;
+    }
+
+    .mobile-link {
+        @apply text-dark-blue font-semibold;
+    }
+
+    .nav-right-side {
+        @apply items-center space-x-6 hidden lg:flex;
+    }
+
+    .profile-img {
+        @apply w-12 h-12 rounded-full border border-white ring-2 ring-dark-blue;
+    }
+
+    .mobile-links {
+        @apply grid grid-cols-1 gap-y-2 w-11/12 mx-auto py-4;
+    }
+    /* ---------------- */
+
+    /* Body */
+    .body-container {
+        @apply w-11/12 lg:w-10/12 mx-auto mt-14;
+    }
+
+    /* ---------------- */
+
+    /* Search menu */
+    #search-menu form {
+        @apply relative mt-5 w-full md:w-8/12 lg:w-5/12;
+    }
+
+    #search-menu form input {
+        @apply h-12 w-full outline-none pl-12 pr-24 rounded-lg text-dark-blue shadow-md shadow-gray-300;
+    }
+
+    #search-menu form img {
+        @apply absolute top-3 left-4 w-6 h-6;
+    }
+    #search-menu form button {
+        @apply absolute rounded-lg top-2 right-2 bg-dark-blue text-white px-4 py-1;
+    }
+    /* ---------------- */
+
+    .sub-title {
+        @apply text-lg font-semibold text-dark-blue;
+    }
+
+    /* Card Laundry */
+    .card-laundry {
+        @apply bg-dark-blue p-4 rounded-lg w-[250px] cursor-pointer;
+    }
+    .card-img {
+        @apply w-[250px] aspect-auto rounded;
+    }
+    /* ---------------- */
+
+    /* Laundry Tipe Menu */
+    .laundry-type-body {
+        @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-4 mt-5;
+    }
+
+    .btn-laundry-type {
+        @apply bg-white text-dark-blue font-semibold text-center text-lg px-6 py-4 rounded-lg shadow-md shadow-gray-300 hover:bg-dark-blue hover:text-white;
+    }
+    /* ---------------- */
+
+    /* General Footer */
+    footer {
+        @apply bg-white py-8 mt-20;
+    }
+
+    .footer-container {
+        @apply w-10/12 mx-auto space-y-8;
+    }
+
+    .footer-links {
+        @apply flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-16;
+    }
+
+    .footer-items {
+        @apply grid grid-cols-1 text-center sm:text-left sm:grid-cols-3 gap-y-8 gap-x-8 col-span-3;
+    }
+
+    .footer-item {
+        @apply text-dark-blue text-sm hover:underline;
+    }
+
+    .footer-contacts {
+        @apply flex items-center space-x-2 mx-auto sm:mx-0 text-dark-blue hover:underline;
+    }
+
+    .footer-copyright {
+        @apply flex items-center flex-col sm:flex-row space-y-5 sm:space-y-0 justify-between mt-8;
+    }
+    /* ---------------- */
+
+    /* Navbar Landing */
+    .navbar-landing {
+        @apply fixed w-full top-0 py-4 z-10;
+    }
+    .nav-landing-link {
+        @apply text-white text-lg hover:border-b-2 hover:border-white;
+    }
+    .landing-mobile-link {
+        @apply text-white font-semibold;
+    }
+    /* ----------------- */
+
+    /* Content Landing */
+    .btn-landing {
+        @apply px-4 py-2 bg-gold-yellow text-dark-blue font-semibold rounded;
+    }
+    /* ----------------- */
+}

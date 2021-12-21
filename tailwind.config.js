@@ -1,6 +1,6 @@
 const plugin = require("tailwindcss/plugin");
 module.exports = {
-    content: ["./page/*.{html,js}", "./page/*.{php}", "*.{html,js,php}"],
+    content: ["./page/*.{html,php}", "*.{html,php}"],
     theme: {
         extend: {
             fontFamily: {
@@ -18,7 +18,13 @@ module.exports = {
         plugin(function ({ addUtilities }) {
             const utilities = {
                 ".bg-hero-landing": {
-                    "background-image": "url(/img/background-hero.svg)",
+                    "background-image": "url(/FP-PWL/img/icons/background-hero.svg)",
+                    "background-size": "cover",
+                    "background-position": "bottom",
+                    "background-repeat": "no-repeat",
+                },
+                ".bg-join": {
+                    "background-image": "url(/FP-PWL/img/background-landing-join.png)",
                     "background-size": "cover",
                     "background-position": "bottom",
                     "background-repeat": "no-repeat",
