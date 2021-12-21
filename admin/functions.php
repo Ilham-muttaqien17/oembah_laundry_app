@@ -65,6 +65,11 @@ function registerLaundry($data) {
     //encrypt password
     $password = password_hash($password, PASSWORD_DEFAULT);
 
+    // Check validate open and close time
+    if(!validateWorkingTime($open_time, $close_time)){
+        return false;
+    }
+
     //insert data to database
     $query = "INSERT INTO tb_laundry VALUES('', '$name', '$email', '$password', '$alamat', '$latitude', '$longitude', '$biaya', '$kontak', '$jenis', '$open_time', '$close_time', '')";
     mysqli_query($conn, $query);
@@ -220,6 +225,27 @@ function getUserPosition($data){
     $row = mysqli_fetch_assoc($result);
 
     return $row;
+}
+
+function validateWorkingTime($startTime, $endTime) {
+    $startTime = explode (':', $startTime);
+    $startHour = reset($startTime);
+    $startMinute = end($startTime);
+    
+    $endTime = explode(':', $endTime);
+    $endHour = reset($endTime);
+    $endMinute = end($endTime);
+
+    $endTime = floatval($endHour . '.' . $endMinute);
+    $startTime = floatval($startHour . '.' . $startMinute);
+    
+    $countTime = $endTime - $startTime;
+
+    if($countTime < 0) {
+        return false;
+    } 
+
+    return true;
 }
 
 
