@@ -73,6 +73,28 @@ if(isset($_POST['register'])){
                 </select>
             </li>
             <li>
+                <label for="jenis">Hari Kerja: </label>
+                <select name="hari_mulai" id="hari_mulai" required>
+                    <option value="Senin">Senin</option>
+                    <option value="Selasa">Selasa</option>
+                    <option value="Rabu">Rabu</option>
+                    <option value="Kamis">Kamis</option>
+                    <option value="Jumat">Jumat</option>
+                    <option value="Sabtu">Sabtu</option>
+                    <option value="Minggu">Minggu</option>
+                </select>
+                <span>sampai</span>
+                <select name="hari_akhir" id="hari_akhir" required>
+                    <option value="Senin">Senin</option>
+                    <option value="Selasa">Selasa</option>
+                    <option value="Rabu">Rabu</option>
+                    <option value="Kamis">Kamis</option>
+                    <option value="Jumat">Jumat</option>
+                    <option value="Sabtu">Sabtu</option>
+                    <option value="Minggu">Minggu</option>
+                </select>
+            </li>
+            <li>
                 <label for="open_time">Jam Buka: </label>
                 <input type="time" name="open_time" id="open_time" required>
             </li>
