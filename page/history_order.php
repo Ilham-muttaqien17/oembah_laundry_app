@@ -2,17 +2,16 @@
 require '../functions.php';
 session_start();
 
-if(!isset($_SESSION['user'])){
-    header('location: ../login.php');
+if(checkCookie($_COOKIE) === true) {
+    $_SESSION['user'] = $_COOKIE['user_email'];
 }
 
-if(isset($_COOKIE['user_email'])) {
-    $data = $_COOKIE['user_email'];
-} else {
-    setcookie('user_email', '', time() - 3600);
-    unset($_SESSION['user']);
-    header('location: ../login.php');
+if(!isset($_SESSION['user'])){
+    header('location: login.php');
 }
+
+$data = $_SESSION['user'];
+
 
 $order = query("SELECT * FROM tb_order INNER JOIN tb_transaksi ON tb_order.id_order = tb_transaksi.id_order");
 

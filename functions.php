@@ -30,6 +30,8 @@ function validateNumber($number) {
     // kadang ada penulisan no hp 0811.239.345
     $number = str_replace(".","",$number);
 
+    $numberValidated = '';
+
     // cek apakah no hp mengandung karakter + dan 0-9
     if(!preg_match('/[^+0-9]/',trim($number))){
         // cek apakah no hp karakter 1-3 adalah 62
@@ -68,6 +70,11 @@ function registerUser($data) {
         return false;
     }
 
+    // Check checkbox
+    if(!isset($data['term'])){
+        return false;
+    }
+
     //encrypt password
     $password = password_hash($password, PASSWORD_DEFAULT);
 
@@ -95,9 +102,9 @@ function loginUser($data){
             if(isset($data['rememberme'])){
                 setcookie("user_email", $email, time() + (10 * 365 * 24 * 60 * 60));
             }
-            $_SESSION['user'] = true;
+            $_SESSION['user'] = $email;
             header('location: index.php');
-            exit;
+            // exit;
         } 
     }
 

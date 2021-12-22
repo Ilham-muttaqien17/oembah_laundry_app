@@ -2,17 +2,15 @@
 require '../functions.php';
 session_start();
 
-if(!isset($_SESSION['user'])){
-    header('location: ../login.php');
+if(checkCookie($_COOKIE) === true) {
+    $_SESSION['user'] = $_COOKIE['user_email'];
 }
 
-if(isset($_COOKIE['user_email'])) {
-    $data = $_COOKIE['user_email'];
-} else {
-    setcookie('user_email', '', time() - 3600);
-    unset($_SESSION['user']);
-    header('location: ../login.php');
+if(!isset($_SESSION['user'])){
+    header('location: login.php');
 }
+
+$data = $_SESSION['user'];
 
 if(isset($_GET['cancel'])) {
     $cancel_id = $_GET['cancel'];

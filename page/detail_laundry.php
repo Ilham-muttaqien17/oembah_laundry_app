@@ -2,39 +2,38 @@
 require '../functions.php';
 session_start();
 
+if(checkCookie($_COOKIE) === true) {
+    $_SESSION['user'] = $_COOKIE['user_email'];
+}
+
 if(!isset($_SESSION['user'])){
     header('location: login.php');
 }
 
-if(isset($_COOKIE['user_email'])){
-    if(isset($_POST['order'])) {
-        $email = $_COOKIE['user_email'];
-        $id_laundry = $_GET['id'];
-        $qty = $_POST['qty'];
-        $tipe_antar = $_POST['tipe_antar'];
+if(isset($_POST['order'])) {
+    $email = $_SESSION['user'];
+    $id_laundry = $_GET['id'];
+    $qty = $_POST['qty'];
+    $tipe_antar = $_POST['tipe_antar'];
 
-        date_default_timezone_set('Asia/Jakarta');
-        $tgl_order = date("Y-m-d h:i:sa");
+    date_default_timezone_set('Asia/Jakarta');
+    $tgl_order = date("Y-m-d h:i:sa");
 
-        $order = addOrder($email, $id_laundry, $qty, $tipe_antar, $tgl_order);
+    $order = addOrder($email, $id_laundry, $qty, $tipe_antar, $tgl_order);
 
-        $transaksi = addTransaction($id_laundry, $qty, $tgl_order);
+    $transaksi = addTransaction($id_laundry, $qty, $tgl_order);
 
 
-        if($order > 0) {
-            echo "<script>alert('Pesanan berhasil dibuat, silahkan tunggu konfirmasi!');
-            document.location.href = index.php</script>";
-        } else {
-            echo "<script>alert('Pesanan gagal dibuat, mohon ulangi lagi!');
-            document.location.href = detail_laundry.php</script>";
-        }
-    
+    if($order > 0) {
+        echo "<script>alert('Pesanan berhasil dibuat, silahkan tunggu konfirmasi!');
+        document.location.href = index.php</script>";
+    } else {
+        echo "<script>alert('Pesanan gagal dibuat, mohon ulangi lagi!');
+        document.location.href = detail_laundry.php</script>";
     }
-} else {
-    setcookie('user_email', '', time() - 3600);
-    unset($_SESSION['user']);
-    header('location: login.php');
+
 }
+
 
 
 

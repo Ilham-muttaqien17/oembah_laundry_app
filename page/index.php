@@ -1,15 +1,12 @@
 <?php 
 require '../functions.php';
-
 session_start();
 
-if(!isset($_SESSION['user'])){
-    header('location: login.php');
+if(checkCookie($_COOKIE) === true) {
+    $_SESSION['user'] = $_COOKIE['user_email'];
 }
 
-if(!isset($_COOKIE['user_email'])) {
-    setcookie('user_email', '', time() - 3600);
-    unset($_SESSION['user']);
+if(!isset($_SESSION['user'])){
     header('location: login.php');
 }
 
@@ -19,7 +16,7 @@ if(isset($_POST['search'])) {
 }
 
 $laundry = query("SELECT * FROM tb_laundry"); 
-$user = getUserProfile($_COOKIE['user_email']);
+$user = getUserProfile($_SESSION['user']);
 
 
 ?>
@@ -102,7 +99,7 @@ $user = getUserProfile($_COOKIE['user_email']);
     <div class="d-flex flex-row">
         <!-- Get laundry distance -->
         <?php 
-            $data = getDistanceLaundry($_COOKIE['user_email']);
+            $data = getDistanceLaundry($_SESSION['user']);
 
             usort($data, function($a, $b) {
                 return $a['distance'] > $b['distance'] ? 1 : -1;
@@ -131,7 +128,7 @@ $user = getUserProfile($_COOKIE['user_email']);
     $allPositionLaundry = query("SELECT * FROM tb_laundry");
     $allPositionLaundry = json_encode($allPositionLaundry);
 
-    $userEmail = $_COOKIE['user_email'];
+    $userEmail = $_SESSION['user'];
     $userPosition = query("SELECT latitude,longitude,alamat FROM tb_user WHERE email = '$userEmail'");
     $userPosition = json_encode($userPosition);
 

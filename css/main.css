@@ -13,10 +13,12 @@
         w-11/12
         sm:w-8/12
         md:w-7/12
-        lg:w-6/12
-        px-10
+        lg:w-5/12
+        px-6
+        sm:px-16
         rounded-lg
-        py-16
+        py-14
+        sm:py-16
         mt-24
         mb-10
         mx-auto
@@ -93,11 +95,13 @@
         w-11/12
         sm:w-7/12
         md:w-6/12
-        lg:w-4/12
+        lg:w-5/12
         xl:w-3/12
-        px-10
+        px-6
+        sm:px-12
         rounded-lg
-        py-16
+        py-14
+        sm:py-16
         mt-24
         mb-10
         mx-auto
