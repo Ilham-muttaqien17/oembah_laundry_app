@@ -92,7 +92,9 @@ function loginUser($data){
 
         //check password 
         if(password_verify($password, $row['password'])) {
-            setcookie("user_email", $email, time() + 3600);
+            if(isset($data['rememberme'])){
+                setcookie("user_email", $email, time() + (10 * 365 * 24 * 60 * 60));
+            }
             $_SESSION['user'] = true;
             header('location: index.php');
             exit;
