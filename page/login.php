@@ -66,11 +66,11 @@ if(isset($_POST['login'])){
             <ul>
                 <li>
                     <label class="label" for="email">Email</label>
-                    <input id="email" name="email" class="form-input" type="email" placeholder="Email" />
+                    <input id="email" name="email" class="form-input" type="email" placeholder="Email" required/>
                 </li>
                 <li>
                     <label class="label" for="password">Kata sandi</label>
-                    <input id="password" name="password" class="form-input" type="password" placeholder="Password" />
+                    <input id="password" name="password" class="form-input" type="password" placeholder="Password" required/>
                 </li>
                 <li>
                     <input class="rounded-full" type="checkbox" name="rememberme" id="rememberme" />

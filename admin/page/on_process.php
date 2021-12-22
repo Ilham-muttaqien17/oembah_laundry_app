@@ -3,17 +3,15 @@ require '../functions.php';
 
 session_start();
 
+if(checkCookie($_COOKIE) === true) {
+    $_SESSION['admin'] = $_COOKIE['admin_email'];
+}
+
 if(!isset($_SESSION['admin'])){
     header('location: ../login.php');
 }
 
-if(isset($_COOKIE['admin_email'])) {
-    $data = $_COOKIE['admin_email'];
-} else {
-    setcookie('admin_email', '', time() - 3600);
-    unset($_SESSION['admin']);
-    header('location: ../login.php');
-}
+$data = $_SESSION['admin'];
 
 $order = query("SELECT * FROM tb_order");
 

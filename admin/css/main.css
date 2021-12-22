@@ -1,3 +1,150 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    * {
+        @apply font-poppins;
+    }
+
+    /* Register Page */
+    .regis-form {
+        @apply bg-dark-blue
+        w-11/12
+        sm:w-8/12
+        md:w-7/12
+        lg:w-5/12
+        px-6
+        sm:px-16
+        rounded-lg
+        py-14
+        sm:py-16
+        mt-24
+        mb-10
+        mx-auto
+        shadow-lg;
+    }
+
+    .regis-form ul {
+        @apply grid 
+        grid-cols-1
+        lg:grid-cols-2
+        gap-4;
+    }
+
+    .regis-form ul li {
+        @apply space-y-1;
+    }
+
+    .dropdown-input {
+        @apply bg-white 
+        text-sm 
+        px-3 
+        py-2 
+        border-b-2
+        rounded 
+        w-full 
+        focus:bg-white 
+        focus:ring-2
+        focus:ring-violet-500 
+        outline-none;
+    }
+
+    .logo {
+        @apply w-24 h-24 absolute top-12 left-2/4 translate-x-[-50%];
+    }
+
+    .title {
+        @apply mx-auto text-2xl mb-10 font-semibold text-dark-blue;
+    }
+
+    .label {
+        @apply text-xs text-gray-200;
+    }
+
+    .form-input {
+        @apply bg-white  
+        px-4 
+        py-2
+        text-sm
+        rounded
+        outline-none 
+        w-full 
+        border-b-2  
+        focus:border-b-2 
+        focus:border-violet-500;
+    }
+
+    .btn-register {
+        @apply w-full lg:w-8/12 h-12
+        text-lg
+        bg-white
+        text-dark-blue
+        font-semibold 
+        rounded-lg
+        border
+        border-dark-blue 
+        shadow-xl 
+        shadow-dark-blue/30 
+        hover:bg-dark-blue
+        hover:text-white
+        hover:border-white
+        hover:border
+        hover:ring-violet-500
+        hover:ring-1;
+    }
+
+    #map_canvas {
+        @apply w-full h-[250px] lg:h-[350px] mt-4 rounded;
+    }
+
+    #latitude,
+    #longitude {
+        @apply hidden;
+    }
+
+    /* Login Page */
+    .login-form {
+        @apply bg-dark-blue
+        w-11/12
+        sm:w-7/12
+        md:w-6/12
+        lg:w-5/12
+        xl:w-3/12
+        px-6
+        sm:px-12
+        rounded-lg
+        py-14
+        sm:py-16
+        mt-24
+        mb-10
+        mx-auto
+        shadow-lg;
+    }
+
+    .login-form ul {
+        @apply space-y-4;
+    }
+    .login-form ul li {
+        @apply space-y-2;
+    }
+
+    .btn-login {
+        @apply w-full xl:w-8/12 h-12
+        text-lg
+        bg-white
+        text-dark-blue
+        font-semibold 
+        rounded-lg
+        border
+        border-dark-blue 
+        shadow-xl 
+        shadow-dark-blue/30 
+        hover:bg-dark-blue
+        hover:text-white
+        hover:border-white
+        hover:border
+        hover:ring-violet-500
+        hover:ring-1;
+    }
+}

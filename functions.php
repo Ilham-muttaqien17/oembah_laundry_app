@@ -104,7 +104,7 @@ function loginUser($data){
             }
             $_SESSION['user'] = $email;
             header('location: index.php');
-            // exit;
+            exit;
         } 
     }
 

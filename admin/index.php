@@ -2,13 +2,11 @@
 require 'functions.php';
 session_start();
 
-if(!isset($_SESSION['admin'])){
-    header('location: login.php');
+if(checkCookie($_COOKIE) === true) {
+    $_SESSION['admin'] = $_COOKIE['admin_email'];
 }
 
-if(!isset($_COOKIE['admin_email'])) {
-    setcookie('admin_email', '', time() - 3600);
-    unset($_SESSION['admin']);
+if(!isset($_SESSION['admin'])){
     header('location: login.php');
 }
 

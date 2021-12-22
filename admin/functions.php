@@ -78,6 +78,11 @@ function registerLaundry($data) {
         return false;
     }
 
+    // Check checkbox
+    if(!isset($data['term'])){
+        return false;
+    }
+
     //insert data to database
     $query = "INSERT INTO tb_laundry VALUES('', '$name', '$email', '$password', '$alamat', '$latitude', '$longitude', '$biaya', '$kontak', '$jenis', '$hari_mulai', '$hari_akhir', '$open_time', '$close_time', '')";
     mysqli_query($conn, $query);
@@ -102,7 +107,7 @@ function loginLaundry($data){
             if(isset($data['rememberme'])) {
                 setcookie("admin_email", $email, time() + (10 * 365 * 24 * 60 * 60));
             }
-            $_SESSION['admin'] = true;
+            $_SESSION['admin'] = $email;
             header('location: index.php');
             exit;
         } 
