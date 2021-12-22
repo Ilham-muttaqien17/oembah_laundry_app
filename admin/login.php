@@ -51,6 +51,8 @@ if(isset($_POST['login'])){
         <input type="email" name="email" id="email" />
         <label for="password">Password: </label>
         <input type="password" name="password" id="password" />
+        <input class="rounded-full" type="checkbox" name="rememberme" id="rememberme" />
+        <label for="rememberme">Simpan informasi masuk saya</label>
         <button name="login">Login</button>
     </form>
 
