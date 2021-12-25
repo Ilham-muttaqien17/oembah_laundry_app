@@ -36,8 +36,15 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+    $("#result").hide();
     $("#keyword").on("keyup", function () {
-        $("#container").load("../laundry.php?keyword=" + $("#keyword").val());
+        var keyword = $("#keyword").val();
+        if (keyword.length > 2) {
+            $("#result").load("./laundry.php?keyword=" + $("#keyword").val());
+            $("#result").show();
+        } else {
+            $("#result").hide();
+        }
     });
 });
 
