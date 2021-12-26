@@ -139,7 +139,7 @@ function getDetailLaundry($data){
     return $row;
 }
 
-function addOrder($email, $idLaundry, $jumlah, $tipe_antar, $tgl_order){
+function addOrder($email, $idLaundry, $jumlah, $tgl_order){
     global $conn;
     
 
@@ -151,10 +151,9 @@ function addOrder($email, $idLaundry, $jumlah, $tipe_antar, $tgl_order){
     $id_user = (int) $userId;
     $qty = $jumlah;
     $status = 1;
-    $type_delivery = $tipe_antar;
     $order_time = $tgl_order;
 
-    mysqli_query($conn, "INSERT INTO tb_order VALUES('', '$qty', '$status', '$type_delivery', '$order_time', '$id_user', '$id_laundry')");
+    mysqli_query($conn, "INSERT INTO tb_order VALUES('', '$qty', '$status', '$order_time', '$id_user', '$id_laundry')");
 
     
     return mysqli_affected_rows($conn);

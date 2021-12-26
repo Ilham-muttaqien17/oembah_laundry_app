@@ -99,3 +99,18 @@ $(document).ready(function () {
         $("#btn-hotel").addClass("shadow-lg");
     });
 });
+
+$(document).ready(() => {
+    const openModal = document.getElementById("btn-open-modal");
+    const closeModal = document.getElementById("btn-close-modal");
+    const overlay = document.getElementById("overlay");
+
+    const toggleModal = () => {
+        overlay.classList.toggle("flex");
+        overlay.classList.toggle("hidden");
+    };
+
+    openModal.addEventListener("click", toggleModal);
+
+    closeModal.addEventListener("click", toggleModal);
+});
