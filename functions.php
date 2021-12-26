@@ -301,6 +301,7 @@ function editUserProfile($data, $uid, $img) {
     global $conn;
 
     $name = validateData($data['name']);
+    $password = validateData($data['password']);
     $contact = validateNumber(validateData($data['kontak']));
     $address = validateData($data['alamat']);
     $latitude = $data['latitude'];
@@ -312,14 +313,16 @@ function editUserProfile($data, $uid, $img) {
         $image = $oldImage;
     } else {
         $image = uploadImage($img);
-    }
-
-    if(!$image) {
-        return false;
+        if(!$image) {
+            die("here");
+            return false;
+        }
     }
     
+    //encrypt password
+    $password = password_hash($password, PASSWORD_DEFAULT);
 
-    $query = "UPDATE tb_user SET nama_user = '$name', kontak = '$contact', alamat = '$address', latitude = '$latitude', longitude = '$longitude', image = '$image' WHERE id_user = '$uid'";
+    $query = "UPDATE tb_user SET nama_user = '$name', password = '$password', kontak = '$contact', alamat = '$address', latitude = '$latitude', longitude = '$longitude', image = '$image' WHERE id_user = '$uid'";
     mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);

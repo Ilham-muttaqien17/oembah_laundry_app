@@ -18,13 +18,13 @@ module.exports = {
         plugin(function ({ addUtilities }) {
             const utilities = {
                 ".bg-hero-landing": {
-                    "background-image": "url(/FP-PWL/img/icons/background-hero.svg)",
+                    "background-image": "url(../img/icons/background-hero.svg)",
                     "background-size": "cover",
                     "background-position": "bottom",
                     "background-repeat": "no-repeat",
                 },
                 ".bg-join": {
-                    "background-image": "url(/FP-PWL/img/background-landing-join.png)",
+                    "background-image": "url(../img/background-landing-join.png)",
                     "background-size": "cover",
                     "background-position": "bottom",
                     "background-repeat": "no-repeat",

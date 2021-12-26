@@ -12,11 +12,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
 
         <!-- CSS -->
-        <link rel="stylesheet" href="./css/output.css" />
+        <link rel="stylesheet" href="./css/output.css?v=4" />
 
         <!-- Javascript -->
         <script src="./js/jquery-3.6.0.min.js"></script>
-        <script type="text/javascript" src="./js/script.js?v=1"></script>
+        <script type="text/javascript" src="./js/script.js"></script>
 
         
     </head>
