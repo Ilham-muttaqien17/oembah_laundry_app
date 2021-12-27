@@ -80,7 +80,7 @@ $user = getUserProfile($_SESSION['user']);
                         </ul>
                     </div>
                 </div>
-                <a class="nav-right-side" href="./profile.php?uid=<?= $user['id_user'];?>">
+                <a class="nav-right-side" href="./profile.php">
                     <span class="text-dark-blue text-lg font-semibold"><?= $user['nama_user'];?></span>
                     <img class="profile-img" src="../img/<?= !empty($user['image']) ? '../img/profile/'.$user['image'] : 'default_profile.png'?>" alt="Profile Image" />
                 </a>

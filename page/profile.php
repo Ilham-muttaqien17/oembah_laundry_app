@@ -10,13 +10,12 @@ if(!isset($_SESSION['user'])){
     header('location: login.php');
 }
 
-
-$user = getUserProfile($_GET['uid']);
+$user = getUserProfile($_SESSION['user']);
 
 $message = null;
 
 if(isset($_POST['edit'])) {
-    if(editUserProfile($_POST, $_GET['uid'], $_FILES['img_profile']) > 0) {
+    if(editUserProfile($_POST, $user['id_user'], $_FILES['img_profile']) > 0) {
         $message = 'true';
         header('location: profile.php?uid='.$_GET["uid"].'&status_edit='.$message);
     } else {
