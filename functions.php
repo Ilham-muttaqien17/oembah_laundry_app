@@ -364,4 +364,13 @@ function uploadImage($img){
 
 }
 
+function deleteUser($uid) {
+    global $conn;
+    $query = "DELETE FROM tb_user WHERE id_user = '$uid'";
+
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
 ?>

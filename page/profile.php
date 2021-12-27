@@ -25,6 +25,22 @@ if(isset($_POST['edit'])) {
     }
 }
 
+if(isset($_GET['delete_id'])) {
+    if(deleteUser($_GET['delete_id']) > 0) {
+        echo "
+        <script>
+            alert('Berhasil Mengahapus Akun');
+            document.location.href = 'logout.php';
+        </script>";
+    } else {
+        echo "
+        <script>
+            alert('Gagal Mengahapus Akun');
+            document.location.href = 'profile.php';
+        </script>";
+    }
+}
+
 
 
 ?>
@@ -136,7 +152,7 @@ if(isset($_POST['edit'])) {
                 </div>
                 <div class="grid gap-y-10 grid-cols-1 lg:grid-cols-4 mt-4">
                     <div class="flex flex-col order-last lg:-order-last gap-y-1 mx-auto lg:-mx-0">
-                        <a class="text-red-600 font-bold hover:bg-gray-200 w-28 text-center rounded-lg py-1" href="">Hapus Akun</a>
+                        <a class="text-red-600 font-bold hover:bg-gray-200 w-28 text-center rounded-lg py-1" href="profile.php?delete_id=<?=$user['id_user'];?>">Hapus Akun</a>
                         <a class="text-white bg-dark-blue w-24 text-center rounded-lg py-1" href="logout.php">Keluar</a>
                     </div>
                     <button name="edit" class="lg:col-span-3 order-first lg:-order-first mx-auto lg:-mx-0 lg:ml-auto bg-dark-blue text-white h-8 px-4 rounded-lg">Simpan Perubahan</button>
