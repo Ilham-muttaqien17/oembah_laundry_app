@@ -308,6 +308,8 @@ function editUserProfile($data, $uid, $img) {
     $longitude = $data['longitude'];
     $oldImage = $data['old_profile'];
 
+    $query = '';
+
     //Check if user select new img profile
     if($img['error'] === 4) {
         $image = $oldImage;
@@ -318,11 +320,17 @@ function editUserProfile($data, $uid, $img) {
             return false;
         }
     }
-    
-    //encrypt password
-    $password = password_hash($password, PASSWORD_DEFAULT);
 
-    $query = "UPDATE tb_user SET nama_user = '$name', password = '$password', kontak = '$contact', alamat = '$address', latitude = '$latitude', longitude = '$longitude', image = '$image' WHERE id_user = '$uid'";
+    // check password is empty
+    if(empty($password)) {
+        $query = "UPDATE tb_user SET nama_user = '$name', kontak = '$contact', alamat = '$address', latitude = '$latitude', longitude = '$longitude', image = '$image' WHERE id_user = '$uid'";
+    } else {
+        //encrypt password
+        $password = password_hash($password, PASSWORD_DEFAULT);
+
+        $query = "UPDATE tb_user SET nama_user = '$name', password = '$password', kontak = '$contact', alamat = '$address', latitude = '$latitude', longitude = '$longitude', image = '$image' WHERE id_user = '$uid'";
+    }     
+
     mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);
