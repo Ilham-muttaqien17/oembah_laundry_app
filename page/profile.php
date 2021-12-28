@@ -83,7 +83,7 @@ if(isset($_GET['delete_id'])) {
                         </ul>
                     </div>
                 </div>
-                <a class="nav-right-side" href="./profile.php?uid=<?= $user['id_user'];?>">
+                <a class="nav-right-side" href="./profile.php">
                     <span class="text-dark-blue text-lg font-semibold"><?= $user['nama_user'];?></span>
                     <img class="profile-img" src="../img/<?= !empty($user['image']) ? '../img/profile/'.$user['image'] : 'default_profile.png'?>" alt="Profile Image" />
                 </a>
@@ -92,7 +92,7 @@ if(isset($_GET['delete_id'])) {
             <div id="item-menu-mobile" class="top-[5.5rem] absolute w-full bg-gray-soft hidden lg:hidden drop-shadow-lg">
                 <hr class="border border-dark-blue w-11/12 mx-auto" />
                 <ul class="relative mobile-links">
-                    <li class="mobile-link"><a href="#">Profile</a></li>
+                    <li class="mobile-link"><a href="./profile.php">Profile</a></li>
                     <li class="mobile-link"><a href="#">Pesanan</a></li>
                     <li class="mobile-link"><a href="#">Riwayat</a></li>
                     <li class="mobile-link"><a href="#">Notifikasi</a></li>

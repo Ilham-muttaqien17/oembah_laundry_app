@@ -75,7 +75,7 @@ $user = getUserProfile($_SESSION['user']);
             <div id="item-menu-mobile" class="top-[5.5rem] absolute w-full bg-gray-soft hidden lg:hidden drop-shadow-lg">
                 <hr class="border border-dark-blue w-11/12 mx-auto" />
                 <ul class="relative mobile-links">
-                    <li class="mobile-link"><a href="#">Profile</a></li>
+                    <li class="mobile-link"><a href="./profile.php">Profile</a></li>
                     <li class="mobile-link"><a href="#">Pesanan</a></li>
                     <li class="mobile-link"><a href="#">Riwayat</a></li>
                     <li class="mobile-link"><a href="#">Notifikasi</a></li>
