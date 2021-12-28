@@ -13,16 +13,9 @@ if(isset($_SESSION['user'])){
 $message = '';
 
 if(isset($_POST['login'])){
-    if(!empty($_POST['email'])){
-        if(!empty($_POST['password'])){
-            if(loginUser($_POST) === false){
-                $message = "Email atau password salah";
-            }
-        } else {
-            $message = "Password tidak boleh kosong";
-        }
-    } else {
-        $message = "Email tidak boleh kosong";
+    $login = loginUser($_POST);
+    if($login['is_ok'] === false) {
+        header('location: login.php?err=' . $login['msg']);
     }
 }
 
@@ -60,9 +53,13 @@ if(isset($_POST['login'])){
                 <span class="hover:underline">Kembali</span>
             </a>
             <h1 class="text-white font-semibold text-xl text-center my-5">Login User</h1>
-            <p>
-                <?php echo $message ?>
-            </p>
+            
+            <?php 
+                if(isset($_GET['err'])) {
+                    echo "<div class='bg-red-200 text-sm text-red-800 py-2 px-2 w-full mt-4 mb-2 rounded'>" . $_GET['err'] . "</div>";
+                }
+            ?>
+
             <ul>
                 <li>
                     <label class="label" for="email">Email</label>
