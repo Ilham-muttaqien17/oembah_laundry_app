@@ -308,7 +308,9 @@ function editUserProfile($data, $uid, $img) {
     $longitude = $data['longitude'];
     $oldImage = $data['old_profile'];
 
+    $msg = '';
     $query = '';
+    $is_ok = false;
 
     //Check if user select new img profile
     if($img['error'] === 4) {
@@ -316,8 +318,8 @@ function editUserProfile($data, $uid, $img) {
     } else {
         $image = uploadImage($img);
         if(!$image) {
-            die("here");
-            return false;
+            $msg = "Hanya diperbolehkan upload gambar dalam format JPG, JPEG, PNG & GIF";
+            goto out;
         }
     }
 
@@ -333,7 +335,20 @@ function editUserProfile($data, $uid, $img) {
 
     mysqli_query($conn, $query);
 
-    return mysqli_affected_rows($conn);
+    if(mysqli_affected_rows($conn) > 0) {
+        $msg = "Berhasil mengubah data";
+        $is_ok = true;
+        goto out;
+    } else {
+        $msg = "Tidak ada data yang berubah";
+        goto out;
+    }
+
+    out: 
+        return [
+            "msg" => $msg, 
+            "is_ok" => $is_ok
+        ];
 }
 
 function uploadImage($img){

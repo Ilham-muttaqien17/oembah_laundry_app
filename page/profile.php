@@ -13,16 +13,12 @@ if(!isset($_SESSION['user'])){
 $user = getUserProfile($_SESSION['user']);
 
 $message = null;
+$edit = null;
 
 if(isset($_POST['edit'])) {
-    if(editUserProfile($_POST, $user['id_user'], $_FILES['img_profile']) > 0) {
-        $message = 'true';
-        header('location: profile.php?uid='.$_GET["uid"].'&status_edit='.$message);
-    } else {
-        $message = 'false';
-        header('location: profile.php?uid='.$_GET["uid"].'&status_edit='.$message);
-        echo mysqli_error($conn);
-    }
+    $edit = editUserProfile($_POST, $user['id_user'], $_FILES['img_profile']);
+    $edit_status = $edit['is_ok'] ? "success" : "failed";
+    header('location: profile.php?message=' . $edit['msg'] . '&edit='. $edit_status);
 }
 
 if(isset($_GET['delete_id'])) {
@@ -63,7 +59,7 @@ if(isset($_GET['delete_id'])) {
         <script src="../js/script.js"></script>
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../css/output.css" />
+        <link rel="stylesheet" href="../css/output.css?v=1" />
         <style>
             input[type = file]::-webkit-file-upload-button {
                 visibility: hidden;
@@ -105,7 +101,19 @@ if(isset($_GET['delete_id'])) {
         </nav>
 
         <!-- Content -->
-        <main class="relative bg-white rounded-lg shadow-md w-11/12 sm:w-10/12 md:w-8/12 lg:w-9/12 xl:w-8/12 mx-auto 2xl:h-[800px] mt-16 px-6 lg:px-12 py-10">
+        <?php 
+            if(isset($_GET['edit'])) {
+                if($_GET['edit'] === "success") {
+                    echo "<div class='bg-green-200 text-green-800 mx-auto py-2 px-2 w-11/12 sm:w-10/12 md:w-8/12 lg:w-9/12 xl:w-8/12 mt-8'>". $_GET['message'] . "</div>";
+                } else {
+                    echo "<div class='bg-red-200 text-red-800 mx-auto py-2 px-2 w-11/12 sm:w-10/12 md:w-8/12 lg:w-9/12 xl:w-8/12 mt-8'>" . $_GET['message'] . "</div>";
+                }
+            }
+        ?>
+
+        
+
+        <main class="relative bg-white rounded-lg shadow-md w-11/12 sm:w-10/12 md:w-8/12 lg:w-9/12 xl:w-8/12 mx-auto 2xl:h-[800px] mt-10 px-6 lg:px-12 py-10">
             <form class="flex flex-col gap-y-6" action="" method="POST" enctype="multipart/form-data">
                 <!-- Vertical Line -->
                 <div class="absolute hidden lg:block top-0 lg:left-[200px] xl:left-[250px] border-r border-dark-blue border-opacity-50 lg:h-[830px] 2xl:h-[800px]"></div>
