@@ -59,7 +59,7 @@ if(isset($_GET['delete_id'])) {
         <script src="../js/script.js"></script>
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../css/output.css?v=1" />
+        <link rel="stylesheet" href="../css/output.css" />
         <style>
             input[type = file]::-webkit-file-upload-button {
                 visibility: hidden;

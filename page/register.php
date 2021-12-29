@@ -29,7 +29,7 @@ if(isset($_POST['register'])){
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" type="text/javascript"></script>
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../css/output.css?v=1" />
+        <link rel="stylesheet" href="../css/output.css" />
     </head>
     <body class="bg-gray-soft">
         <form class="regis-form" action="" method="POST">

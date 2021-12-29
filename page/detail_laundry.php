@@ -59,10 +59,10 @@ $user = getUserProfile($_SESSION['user']);
 
         <!-- JS -->
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" type="text/javascript"></script>
-        <script src="../js/script.js?v=80"></script>
+        <script src="../js/script.js"></script>
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../css/output.css?v=13" />
+        <link rel="stylesheet" href="../css/output.css" />
     </head>
     <body class="bg-gray-soft">
         <!-- Navbar -->

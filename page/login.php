@@ -37,7 +37,7 @@ if(isset($_POST['login'])){
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../css/output.css?v=1" />
+        <link rel="stylesheet" href="../css/output.css" />
 
         <!-- JS -->
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" type="text/javascript"></script>
