@@ -114,3 +114,101 @@ $(document).ready(() => {
 
     closeModal.addEventListener("click", toggleModal);
 });
+
+$(document).ready(() => {
+    $("#btn-all").on("click", () => {
+        $("#btn-all").addClass("bg-dark-blue text-white");
+        $("#btn-all").removeClass("bg-white text-dark-blue");
+        $("#btn-kiloan").removeClass("bg-dark-blue text-white");
+        $("#btn-sepatu").removeClass("bg-dark-blue text-white");
+        $("#btn-helm").removeClass("bg-dark-blue text-white");
+        $("#btn-hotel").removeClass("bg-dark-blue text-white");
+
+        $("#all-result").addClass("grid");
+        $("#all-result").removeClass("hidden");
+        $("#kiloan-result").removeClass("grid");
+        $("#kiloan-result").addClass("hidden");
+        $("#sepatu-result").removeClass("grid");
+        $("#sepatu-result").addClass("hidden");
+        $("#helm-result").removeClass("grid");
+        $("#helm-result").addClass("hidden");
+        $("#hotel-result").removeClass("grid");
+        $("#hotel-result").addClass("hidden");
+    });
+    $("#btn-kiloan").on("click", () => {
+        $("#btn-kiloan").addClass("bg-dark-blue text-white");
+        $("#btn-kiloan").removeClass("bg-white text-dark-blue");
+        $("#btn-all").removeClass("bg-dark-blue text-white");
+        $("#btn-sepatu").removeClass("bg-dark-blue text-white");
+        $("#btn-helm").removeClass("bg-dark-blue text-white");
+        $("#btn-hotel").removeClass("bg-dark-blue text-white");
+
+        $("#kiloan-result").addClass("grid");
+        $("#kiloan-result").removeClass("hidden");
+        $("#all-result").removeClass("grid");
+        $("#all-result").addClass("hidden");
+        $("#sepatu-result").removeClass("grid");
+        $("#sepatu-result").addClass("hidden");
+        $("#helm-result").removeClass("grid");
+        $("#helm-result").addClass("hidden");
+        $("#hotel-result").removeClass("grid");
+        $("#hotel-result").addClass("hidden");
+    });
+    $("#btn-sepatu").on("click", () => {
+        $("#btn-sepatu").addClass("bg-dark-blue text-white");
+        $("#btn-sepatu").removeClass("bg-white text-dark-blue");
+        $("#btn-all").removeClass("bg-dark-blue text-white");
+        $("#btn-kiloan").removeClass("bg-dark-blue text-white");
+        $("#btn-helm").removeClass("bg-dark-blue text-white");
+        $("#btn-hotel").removeClass("bg-dark-blue text-white");
+
+        $("#sepatu-result").addClass("grid");
+        $("#sepatu-result").removeClass("hidden");
+        $("#all-result").removeClass("grid");
+        $("#all-result").addClass("hidden");
+        $("#kiloan-result").removeClass("grid");
+        $("#kiloan-result").addClass("hidden");
+        $("#helm-result").removeClass("grid");
+        $("#helm-result").addClass("hidden");
+        $("#hotel-result").removeClass("grid");
+        $("#hotel-result").addClass("hidden");
+    });
+    $("#btn-helm").on("click", () => {
+        $("#btn-helm").addClass("bg-dark-blue text-white");
+        $("#btn-helm").removeClass("bg-white text-dark-blue");
+        $("#btn-all").removeClass("bg-dark-blue text-white");
+        $("#btn-kiloan").removeClass("bg-dark-blue text-white");
+        $("#btn-sepatu").removeClass("bg-dark-blue text-white");
+        $("#btn-hotel").removeClass("bg-dark-blue text-white");
+
+        $("#helm-result").addClass("grid");
+        $("#helm-result").removeClass("hidden");
+        $("#all-result").removeClass("grid");
+        $("#all-result").addClass("hidden");
+        $("#kiloan-result").removeClass("grid");
+        $("#kiloan-result").addClass("hidden");
+        $("#sepatu-result").removeClass("grid");
+        $("#sepatu-result").addClass("hidden");
+        $("#hotel-result").removeClass("grid");
+        $("#hotel-result").addClass("hidden");
+    });
+    $("#btn-hotel").on("click", () => {
+        $("#btn-hotel").addClass("bg-dark-blue text-white");
+        $("#btn-hotel").removeClass("bg-white text-dark-blue");
+        $("#btn-all").removeClass("bg-dark-blue text-white");
+        $("#btn-kiloan").removeClass("bg-dark-blue text-white");
+        $("#btn-sepatu").removeClass("bg-dark-blue text-white");
+        $("#btn-helm").removeClass("bg-dark-blue text-white");
+
+        $("#hotel-result").addClass("grid");
+        $("#hotel-result").removeClass("hidden");
+        $("#all-result").removeClass("grid");
+        $("#all-result").addClass("hidden");
+        $("#kiloan-result").removeClass("grid");
+        $("#kiloan-result").addClass("hidden");
+        $("#sepatu-result").removeClass("grid");
+        $("#sepatu-result").addClass("hidden");
+        $("#helm-result").removeClass("grid");
+        $("#helm-result").addClass("hidden");
+    });
+});

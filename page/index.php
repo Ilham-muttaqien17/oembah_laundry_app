@@ -10,9 +10,8 @@ if(!isset($_SESSION['user'])){
     header('location: login.php');
 }
 
-if(isset($_GET['search'])) {
-    $data = searchLaundry($_GET['keyword']);
-    var_dump($data);
+if(isset($_POST['search'])) {
+    $data = searchLaundry($_POST['keyword']);
 }
 
 $laundry = query("SELECT * FROM tb_laundry"); 
@@ -86,8 +85,8 @@ $user = getUserProfile($_SESSION['user']);
         <!-- Search Laundry -->
         <div id="search-menu" class="body-container relative">
             <h1 class="sub-title">Mau cari laundry?</h1>
-            <form action="" method="GET">
-                <input placeholder="Masukkan nama/jenis/lokasi" type="text" name="keyword" id="keyword"/>
+            <form action="search.php" method="POST">
+                <input placeholder="Masukkan nama/lokasi" type="text" name="keyword" id="keyword"/>
                 <img src="../img/icons/search_icon.svg" alt="Search Icon" />
                 <button type="submit" name="search" id="btn-search">Cari</button>
                 <div id="result" class=""></div>
