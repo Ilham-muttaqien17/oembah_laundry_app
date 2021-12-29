@@ -91,11 +91,11 @@ if(isset($_POST['search'])) {
         <div class="body-container">
             <h1 class="sub-title">Filter Tipe Laundry</h1>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-x-8 gap-y-4 mt-5">
-                <a id="btn-all" class="btn-laundry-type bg-dark-blue text-white hover:bg-dark-blue hover:text-white" href="#">Semua</a>
-                <a id="btn-kiloan" class="btn-laundry-type bg-white text-dark-blue hover:bg-dark-blue hover:text-white" href="#">Kiloan</a>
-                <a id="btn-sepatu" class="btn-laundry-type bg-white text-dark-blue hover:bg-dark-blue hover:text-white" href="#">Sepatu</a>
-                <a id="btn-helm" class="btn-laundry-type bg-white text-dark-blue hover:bg-dark-blue hover:text-white" href="#">Helm</a>
-                <a id="btn-hotel" class="btn-laundry-type bg-white text-dark-blue hover:bg-dark-blue hover:text-white" href="#">Hotel</a>
+                <button id="btn-all" class="btn-laundry-type bg-dark-blue text-white hover:bg-dark-blue hover:text-white">Semua</button>
+                <button id="btn-kiloan" class="btn-laundry-type bg-white text-dark-blue hover:bg-dark-blue hover:text-white">Kiloan</button>
+                <button id="btn-sepatu" class="btn-laundry-type bg-white text-dark-blue hover:bg-dark-blue hover:text-white">Sepatu</button>
+                <button id="btn-helm" class="btn-laundry-type bg-white text-dark-blue hover:bg-dark-blue hover:text-white">Helm</button>
+                <button id="btn-hotel" class="btn-laundry-type bg-white text-dark-blue hover:bg-dark-blue hover:text-white">Hotel</button>
             </div>
         </div>
 
