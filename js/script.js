@@ -101,18 +101,14 @@ $(document).ready(function () {
 });
 
 $(document).ready(() => {
-    const openModal = document.getElementById("btn-open-modal");
-    const closeModal = document.getElementById("btn-close-modal");
-    const overlay = document.getElementById("overlay");
-
-    const toggleModal = () => {
-        overlay.classList.toggle("flex");
-        overlay.classList.toggle("hidden");
-    };
-
-    openModal.addEventListener("click", toggleModal);
-
-    closeModal.addEventListener("click", toggleModal);
+    $("#btn-open-modal").on("click", () => {
+        $("#overlay").addClass("flex");
+        $("#overlay").removeClass("hidden");
+    });
+    $("#btn-close-modal").on("click", () => {
+        $("#overlay").addClass("hidden");
+        $("#overlay").removeClass("flex");
+    });
 });
 
 $(document).ready(() => {
