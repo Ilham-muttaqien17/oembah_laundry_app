@@ -37,6 +37,100 @@ function validateNumber($number) {
 
 function registerLaundry($data) {
     global $conn;
+
+    $is_ok = false;
+    $msg = '';
+
+    if(!isset($data['name']) || !is_string($data['name'])) {
+        $msg = "Nama tidak boleh kosong!";
+        goto out;
+    }
+
+    if(!isset($data['email']) || !is_string($data['email'])) {
+        $msg = "Email tidak boleh kosong!";
+        goto out;
+    }
+
+    if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+        $msg = "Email {$data['email']} tidak tidak valid!";
+        goto out;
+    }
+
+    //check if email is already use or not
+    $email = $data['email'];
+    $result = mysqli_query($conn, "SELECT email FROM tb_laundry WHERE email = '$email'");
+    if(mysqli_fetch_assoc($result)){
+        $msg = "Email sudah terdaftar!";
+        goto out;
+    }
+
+    if(!isset($data['password']) || !is_string($data['password'])) {
+        $msg = "Kata sandi tidak boleh kosong!";
+        goto out;
+    }
+
+    if(strlen($data['password']) < 8) {
+        $msg = "Kata sandi harus minimal 8 karakter!";
+        goto out;
+    }
+
+    if(!preg_match("/\d/", $data['password']) || 
+        !preg_match("/[A-Z]/", $data['password']) || 
+        !preg_match("/[a-z]/", $data['password'])) {
+            $msg = "Kata sandi harus terdiri dari angka, huruf besar dan huruf kecil!";
+            goto out;
+        }
+    
+    if(!isset($data['confirm']) || !is_string($data['confirm'])) {
+        $msg = "Konfirmasi kata sandi tidak boleh kosong!";
+        goto out;
+    }
+
+    if($data['password'] !== $data['confirm']) {
+        $msg = "Kata sandi tidak sesuai!";
+        goto out;
+    }
+
+    if(!isset($data['kontak'])) {
+        $msg = "Kontak tidak boleh kosong!";
+        goto out;
+    }
+    
+    if(!is_numeric($data['kontak'])) {
+        $msg = "Kontak tidak valid!";
+        goto out;
+    }
+
+    if(!isset($data['biaya']) || !is_numeric($data['biaya'])) {
+        $msg = "Biaya tidak valid!";
+        goto out; 
+    }
+
+    // Check validation on start and end day
+    if(!validateWorkingDay($data['hari_mulai'], $data['hari_akhir'])) {
+        $msg = "Hari kerja tidak valid!";
+        goto out;
+    }
+
+    // Check validate open and close time
+    if(!validateWorkingTime($data['open_time'], $data['close_time'])){
+        $msg = "Jam kerja tidak valid!";
+        goto out;
+    }
+
+    if(strlen($data['alamat']) < 1 || !is_string($data['alamat'])) {
+        $msg = "Alamat tidak boleh kosong!";
+        goto out;  
+    }
+
+    if(!isset($data['term'])){
+        $msg = "Harap menyetujui syarat & ketentuan!";
+        goto out; 
+    }
+
+
+
+
     $name = validateData($data['name']);
     $email = validateData($data['email']);
     $password = validateData($data['password']);
@@ -52,43 +146,21 @@ function registerLaundry($data) {
     $open_time = $data['open_time'];
     $close_time = $data['close_time'];
 
-    //check if email is already use or not
-    $result = mysqli_query($conn, "SELECT email FROM tb_laundry WHERE email = '$email'");
-    if(mysqli_fetch_assoc($result)){
-        echo "<script>alert('Email sudah terdaftar')</script>";
-        return false;
-    }
-
-    //check confirmation password
-    if($password !== $confirm){
-        echo "<script>alert('Password tidak sesuai')</script>";
-        return false;
-    }
-
     //encrypt password
     $password = password_hash($password, PASSWORD_DEFAULT);
 
-    // Check validation on start and end day
-    if(!validateWorkingDay($hari_mulai, $hari_akhir)) {
-        return false;
-    }
-
-    // Check validate open and close time
-    if(!validateWorkingTime($open_time, $close_time)){
-        return false;
-    }
-
-    // Check checkbox
-    if(!isset($data['term'])){
-        return false;
-    }
-
-    //insert data to database
     $query = "INSERT INTO tb_laundry VALUES('', '$name', '$email', '$password', '$alamat', '$latitude', '$longitude', '$biaya', '$kontak', '$jenis', '$hari_mulai', '$hari_akhir', '$open_time', '$close_time', '')";
     mysqli_query($conn, $query);
+    $is_ok = true;
+    $msg = "Berhasil mendaftarkan laundry!";
     
 
-    return mysqli_affected_rows($conn);
+    // return mysqli_affected_rows($conn);
+    out:
+        return[
+            "is_ok" => $is_ok,
+            "msg" => $msg,
+        ];
 }
 
 function loginLaundry($data){

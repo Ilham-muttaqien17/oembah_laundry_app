@@ -2,19 +2,11 @@
 require 'functions.php';
 
 if(isset($_POST['register'])){
-
-    // check if the data was successfully added or not
-    if(registerLaundry($_POST) > 0){
-        echo "<script>
-        alert('Berhasil mendaftarkan akun!'); 
-        document.location.href = 'login.php'
-        </script>";
+    $register = registerLaundry($_POST);
+    if($register['is_ok'] === false) {
+        header('location: register.php?err=' . $register['msg']);
     } else {
-        echo "<script>
-        alert('Gagal mendaftarkan akun!'); 
-        document.location.href = 'register.php';
-        </script>";
-        echo mysqli_error($conn);
+        header('location: register.php?success=' . $register['msg']);
     }
 }
 
@@ -46,6 +38,15 @@ if(isset($_POST['register'])){
                 <span class="hover:underline">Kembali</span>
             </a>
             <h1 class="text-white font-semibold text-xl text-center mt-4 mb-8">Pendaftaran Mitra</h1>
+
+            <?php 
+                if(isset($_GET['err'])) {
+                    echo "<div class='bg-red-200 text-sm text-red-800 py-2 px-2 w-full mt-4 mb-2 rounded'>" . $_GET['err'] . "</div>";
+                }
+                if(isset($_GET['success'])) {
+                    echo "<div class='bg-green-200 text-sm text-green-800 py-2 px-2 w-full mt-4 mb-2 rounded'>" . $_GET['success'] . "</div>";
+                }
+            ?>
 
             <ul>
                 <li>
