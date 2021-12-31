@@ -54,49 +54,49 @@ $(document).ready(function () {
     $("#hotel").hide();
     $("#clothes").show();
 
-    $("#btn-clothes").on("click", () => {
+    $("#svc-clothes").on("click", () => {
         $("#shoes").hide();
         $("#helmet").hide();
         $("#hotel").hide();
         $("#clothes").show();
 
-        $("#btn-clothes").addClass("shadow-lg");
-        $("#btn-shoes").removeClass("shadow-lg");
-        $("#btn-helmet").removeClass("shadow-lg");
-        $("#btn-hotel").removeClass("shadow-lg");
+        $("#svc-clothes").addClass("shadow-lg");
+        $("#svc-shoes").removeClass("shadow-lg");
+        $("#svc-helmet").removeClass("shadow-lg");
+        $("#svc-hotel").removeClass("shadow-lg");
     });
-    $("#btn-shoes").on("click", () => {
+    $("#svc-shoes").on("click", () => {
         $("#clothes").hide();
         $("#helmet").hide();
         $("#hotel").hide();
         $("#shoes").show();
 
-        $("#btn-clothes").removeClass("shadow-lg");
-        $("#btn-shoes").addClass("shadow-lg");
-        $("#btn-helmet").removeClass("shadow-lg");
-        $("#btn-hotel").removeClass("shadow-lg");
+        $("#svc-clothes").removeClass("shadow-lg");
+        $("#svc-shoes").addClass("shadow-lg");
+        $("#svc-helmet").removeClass("shadow-lg");
+        $("#svc-hotel").removeClass("shadow-lg");
     });
-    $("#btn-helmet").on("click", () => {
+    $("#svc-helmet").on("click", () => {
         $("#shoes").hide();
         $("#clothes").hide();
         $("#hotel").hide();
         $("#helmet").show();
 
-        $("#btn-clothes").removeClass("shadow-lg");
-        $("#btn-shoes").removeClass("shadow-lg");
-        $("#btn-helmet").addClass("shadow-lg");
-        $("#btn-hotel").removeClass("shadow-lg");
+        $("#svc-clothes").removeClass("shadow-lg");
+        $("#svc-shoes").removeClass("shadow-lg");
+        $("#svc-helmet").addClass("shadow-lg");
+        $("#svc-hotel").removeClass("shadow-lg");
     });
-    $("#btn-hotel").on("click", () => {
+    $("#svc-hotel").on("click", () => {
         $("#shoes").hide();
         $("#helmet").hide();
         $("#clothes").hide();
         $("#hotel").show();
 
-        $("#btn-clothes").removeClass("shadow-lg");
-        $("#btn-shoes").removeClass("shadow-lg");
-        $("#btn-helmet").removeClass("shadow-lg");
-        $("#btn-hotel").addClass("shadow-lg");
+        $("#svc-clothes").removeClass("shadow-lg");
+        $("#svc-shoes").removeClass("shadow-lg");
+        $("#svc-helmet").removeClass("shadow-lg");
+        $("#svc-hotel").addClass("shadow-lg");
     });
 });
 

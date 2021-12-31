@@ -82,25 +82,25 @@
                 <!-- Left Side Service -->
                 <div class="item grid grid-rows-4 lg:grid-rows-2 grid-flow-col gap-10">
                     <div class="mx-auto">
-                        <div id="btn-clothes" class="text-center flex flex-col rounded-lg justify-center text-dark-blue bg-white w-[200px] h-[200px] space-y-4 cursor-pointer shadow-lg">
+                        <div id="svc-clothes" class="text-center flex flex-col rounded-lg justify-center text-dark-blue bg-white w-[200px] h-[200px] space-y-4 cursor-pointer shadow-lg">
                             <img class="w-20 mx-auto" src="./img/icons/clothes_icon.svg" alt="" />
                             <a class="font-semibold">Clothes Laundry</a>
                         </div>
                     </div>
                     <div class="mx-auto">
-                        <div id="btn-helmet" class="text-center flex flex-col rounded-lg justify-center text-dark-blue bg-white w-[200px] h-[200px] space-y-4 cursor-pointer">
+                        <div id="svc-helmet" class="text-center flex flex-col rounded-lg justify-center text-dark-blue bg-white w-[200px] h-[200px] space-y-4 cursor-pointer">
                             <img class="w-20 mx-auto" src="./img/icons/helm_icon.svg" alt="" />
                             <a class="font-semibold">Helmet Laundry</a>
                         </div>
                     </div>
                     <div class="mx-auto">
-                        <div id="btn-shoes" class="text-center flex flex-col rounded-lg justify-center text-dark-blue bg-white w-[200px] h-[200px] space-y-4 cursor-pointer">
+                        <div id="svc-shoes" class="text-center flex flex-col rounded-lg justify-center text-dark-blue bg-white w-[200px] h-[200px] space-y-4 cursor-pointer">
                             <img class="w-20 mx-auto" src="./img/icons/shoes_icon.svg" alt="" />
                             <a class="font-semibold">Cleaning Shoes</a>
                         </div>
                     </div>
                     <div class="mx-auto">
-                        <div id="btn-hotel" class="text-center flex flex-col rounded-lg justify-center text-dark-blue bg-white w-[200px] h-[200px] space-y-4 cursor-pointer">
+                        <div id="svc-hotel" class="text-center flex flex-col rounded-lg justify-center text-dark-blue bg-white w-[200px] h-[200px] space-y-4 cursor-pointer">
                             <img class="w-20 mx-auto" src="./img/icons/hotel_icon.svg" alt="" />
                             <a class="font-semibold">Hotel Laundry</a>
                         </div>
