@@ -16,7 +16,7 @@ if(isset($_POST['order'])) {
     $qty = $_POST['qty'];
 
     date_default_timezone_set('Asia/Jakarta');
-    $tgl_order = date("Y-m-d h:i:sa");
+    $tgl_order = date("Y-m-d H:i:s");
 
     $order = addOrder($email, $id_laundry, $qty, $tgl_order);
 

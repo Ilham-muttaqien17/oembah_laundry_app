@@ -80,19 +80,36 @@ $order = query("SELECT * FROM tb_order INNER JOIN tb_transaksi ON tb_order.id_or
                 <p class="card-text">Kuantitas: <?= $row['qty'] ?></p>
                 <p class="card-text">Total Biaya: <?= $row['total_biaya'] ?></p>
                 <p class="card-text">Status: <?= $row['status'] ?></p>
+
+                <?php 
+                    date_default_timezone_set('Asia/Jakarta');
+                    $order_date = $row['tgl_order'];
+                    $exp_order = date('Y-m-d H:i:s', strtotime('+5 minutes', strtotime($order_date)));
+                    if($row['status'] == "Waiting") {
+                        echo "<i>Otomatis order dihapus setelah 5 menit</i>";
+                        if(date('Y-m-d H:i:s') > $exp_order) {
+                            deleteRequest($row['id_order']);
+                        }
+                    }
+                                    
+                ?>
+
                 <?php if($row['status'] == "Waiting") : ?>
                 <a class="btn btn-primary" href="orders.php?cancel=<?=$row['id_order'] ?>"
                     onclick="return confirm('Hapus permintaan pesanan?');">Hapus permintaan</a>
                 <?php endif ?>
+
                 <?php if($row['status'] == "On Delivery") : ?>
                 <a class="btn btn-primary" href="orders.php?confirm=<?=$row['id_order'] ?>"
                     onclick="return confirm('Konfirmasi pesanan datang?');">Selesaikan Pesanan</a>
                 <?php endif ?>
                 <br>
+
                 <?php
                     $laundry = getContactLaundry($row['id_laundry']);                    
                     echo '<a href="https://wa.me/'. $laundry. '">Chat Penjual</a>';
                 ?>
+
             </div>
         </div>
 
