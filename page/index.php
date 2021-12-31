@@ -217,7 +217,7 @@ $user = getUserProfile($_SESSION['user']);
         </footer>
         <script>
             //user icon
-            const myLocationIcon = "https://img.icons8.com/ios-filled/50/000000/men-age-group-4.png";
+            const myLocationIcon = "../img/icons/placeholder_icon.png";
 
             //get user position
             var userPos = JSON.parse(document.getElementById('userPosition').innerHTML);
@@ -237,7 +237,8 @@ $user = getUserProfile($_SESSION['user']);
                 var contentUser = document.createElement('div');
                 var bold = document.createElement('b');
                 var paragraf = document.createElement('p');
-                bold.textContent = 'Lokasi anda'
+                bold.textContent = 'Lokasi anda';
+                bold.className = "text-dark-blue font-semibold";
                 paragraf.textContent = alamat;
                 contentUser.style.maxWidth = '150px';
                 contentUser.style.maxHeight = '100%';
