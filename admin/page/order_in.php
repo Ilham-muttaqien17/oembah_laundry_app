@@ -80,7 +80,6 @@ if(isset($_GET['reject_oid'])) {
         <?php $userName = getUserName($row['id_user'])?>
         <p>Nama Pelanggan: <?= $userName ?></p>
         <p>Kuantitas: <?= $row['qty'] ?></p>
-        <p>Tipe Antar: <?= $row['tipe_antar'] ?></p>
         <a href="order_in.php?confirm_oid=<?= $row['id_order']; ?>" onclick="return confirm('Konfirmasi pesanan?');"
             class="btn btn-primary">Konfirmasi Pesanan</a>
         <a href="order_in.php?reject_oid=<?= $row['id_order']; ?>" onclick="return confirm('Tolak pesanan?');"

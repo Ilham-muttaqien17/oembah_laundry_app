@@ -52,7 +52,6 @@ if(isset($_GET['id'])){
         <?php $userName = getUserName($row['id_user'])?>
         <p>Nama Pelanggan: <?= $userName ?></p>
         <p>Kuantitas: <?= $row['qty'] ?></p>
-        <p>Tipe Antar: <?= $row['tipe_antar'] ?></p>
         <a href="send_order.php?id=<?= $row['id_order']; ?>" onclick="return confirm('Kirim pesanan?');"
             class="btn btn-primary">Kirim Pesanan</a>
         <br>

@@ -53,7 +53,6 @@ if(isset($_GET['id'])){
         <?php $userName = getUserName($row['id_user'])?>
         <p>Nama Pelanggan: <?= $userName ?></p>
         <p>Kuantitas: <?= $row['qty'] ?></p>
-        <p>Tipe Antar: <?= $row['tipe_antar'] ?></p>
         <a href="on_process.php?id=<?= $row['id_order']; ?>" onclick="return confirm('Proses pesanan?');"
             class="btn btn-primary">Proses Pesanan</a>
         <?php
