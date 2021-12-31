@@ -79,7 +79,6 @@ $order = query("SELECT * FROM tb_order INNER JOIN tb_transaksi ON tb_order.id_or
                 <p class="card-text">Nama Laundry: <?= $laundryName ?></p>
                 <p class="card-text">Kuantitas: <?= $row['qty'] ?></p>
                 <p class="card-text">Total Biaya: <?= $row['total_biaya'] ?></p>
-                <p class="card-text">Tipe Antar: <?= $row['tipe_antar'] ?></p>
                 <p class="card-text">Status: <?= $row['status'] ?></p>
                 <?php if($row['status'] == "Waiting") : ?>
                 <a class="btn btn-primary" href="orders.php?cancel=<?=$row['id_order'] ?>"
