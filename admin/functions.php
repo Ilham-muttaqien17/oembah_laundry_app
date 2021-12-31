@@ -286,5 +286,15 @@ function validateWorkingDay($startDay, $endDay) {
     return true;
 }
 
+function getLaundryProfile($email) {
+    global $conn;
+
+    $query = "SELECT * FROM tb_laundry WHERE email = '$email'";
+
+    $result = mysqli_query($conn, $query);
+
+    return mysqli_fetch_assoc($result);
+}
+
 
 ?>

@@ -10,6 +10,9 @@ if(!isset($_SESSION['admin'])){
     header('location: login.php');
 }
 
+$laundry = getLaundryProfile($_SESSION['admin']);
+// var_dump($laundry);
+
 ?>
 
 <!DOCTYPE html>
@@ -42,19 +45,19 @@ if(!isset($_SESSION['admin'])){
                 </div>
                 <ul class="flex flex-col gap-y-8 mt-10">
                     <li title="Dashboard">
-                        <a class="flex items-center gap-x-4 text-white" href="">
+                        <a class="flex items-center gap-x-4 text-white" href="./">
                             <img class="w-7" src="./img/icons/home_icon.svg" alt="Dashboard Icon" />
                             <span class="nav-link hidden">Dashboard</span>
                         </a>
                     </li>
                     <li>
-                        <a class="flex items-center gap-x-4 text-white" href="">
+                        <a class="flex items-center gap-x-4 text-white" href="#">
                             <img class="w-7" src="./img/icons/statistic_icon.svg" alt="Statistic Icon" />
                             <span class="nav-link hidden">Statistik</span>
                         </a>
                     </li>
                     <li>
-                        <a class="flex items-center gap-x-4 text-white" href="">
+                        <a class="flex items-center gap-x-4 text-white" href="profile.php">
                             <img class="w-7" src="./img/icons/profile_icon.svg" alt="Profile Icon" />
                             <span class="nav-link hidden">Profile</span>
                         </a>
@@ -74,10 +77,10 @@ if(!isset($_SESSION['admin'])){
             <!-- Content -->
             <main class="w-full bg-gray-soft ml-[3.7rem] h-screen px-2 overflow-y-scroll">
                 <div class="flex">
-                    <div class="ml-auto flex items-center pt-4 pr-4 gap-x-4">
-                        <h1 class="text-dark-blue font-semibold">Nama Profil</h1>
+                    <a class="ml-auto flex items-center pt-4 pr-4 gap-x-4" href="profile.php">
+                        <h1 class="text-dark-blue font-semibold"><?= $laundry['nama_laundry'];?></h1>
                         <img class="h-14" src="https://cdn.pixabay.com/photo/2017/06/13/12/54/profile-2398783_960_720.png" alt="" />
-                    </div>
+                    </a>
                 </div>
 
                 <hr class="w-full mt-4 my-10" />
