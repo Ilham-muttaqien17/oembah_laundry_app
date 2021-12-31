@@ -11,19 +11,10 @@ if(isset($_SESSION['admin'])){
     header('location: index.php');
 }
 
-$message = '';
-
-if(isset($_POST['login'])){
-    if(!empty($_POST['email'])){
-        if(!empty($_POST['password'])){
-            if(loginLaundry($_POST) === false){
-                $message = "Email atau password salah";
-            }
-        } else {
-            $message = "Password tidak boleh kosong";
-        }
-    } else {
-        $message = "Email tidak boleh kosong";
+if(isset($_POST['login'])) {
+    $login = loginLaundry($_POST);
+    if($login['is_ok'] === false) {
+        header('location: login.php?err=' . $login['msg']);
     }
 }
 
@@ -57,6 +48,12 @@ if(isset($_POST['login'])){
                 <span class="hover:underline">Kembali</span>
             </a>
             <h1 class="text-white font-semibold text-xl text-center my-5">Login Admin</h1>
+
+            <?php 
+                if(isset($_GET['err'])) {
+                    echo "<div class='bg-red-200 text-sm text-red-800 py-2 px-2 w-full mt-4 mb-2 rounded'>" . $_GET['err'] . "</div>";
+                }
+            ?>
 
             <ul class="login-ul">
                 <li>

@@ -93,27 +93,54 @@ function registerLaundry($data) {
 
 function loginLaundry($data){
     global $conn;
-    $email = validateData($data['email']);
-    $password = validateData($data['password']);
 
-    $result = mysqli_query($conn, "SELECT * FROM tb_laundry WHERE email = '$email'");
+    $is_ok = false;
+    $msg = '';
 
-    if(mysqli_num_rows($result) === 1) {
-        //get all data from result
-        $row = mysqli_fetch_assoc($result);
+    if(!empty($data['email'])) {
+        if(!empty($data['password'])) {
 
-        //check password 
-        if(password_verify($password, $row['password'])) {
-            if(isset($data['rememberme'])) {
-                setcookie("admin_email", $email, time() + (10 * 365 * 24 * 60 * 60));
+            $email = validateData($data['email']);
+            $password = validateData($data['password']);
+
+            $result = mysqli_query($conn, "SELECT * FROM tb_laundry WHERE email = '$email'");
+
+            if(mysqli_num_rows($result) === 1) {
+                //get all data from result
+                $row = mysqli_fetch_assoc($result);
+        
+                //check password 
+                if(password_verify($password, $row['password'])) {
+                    if(isset($data['rememberme'])) {
+                        setcookie("admin_email", $email, time() + (10 * 365 * 24 * 60 * 60));
+                    }
+                    $is_ok = true;
+                    $_SESSION['admin'] = $email;
+                    header('location: index.php');
+                    exit;
+                } else {
+                    $msg = 'Password salah!';
+                    goto out;
+                }
+            } else {
+                $msg = 'Email tidak ditemukan!';
+                goto out;
             }
-            $_SESSION['admin'] = $email;
-            header('location: index.php');
-            exit;
-        } 
+
+        } else {
+            $msg = 'Password tidak boleh kosong!';
+            goto out;
+        }
+    } else {
+        $msg = 'Email tidak boleh kosong!';
+        goto out;
     }
 
-    return false;
+    out: 
+        return [
+            "is_ok" => $is_ok,
+            "msg" => $msg,
+        ];
 }
 
 function checkCookie($cookie){
