@@ -1,7 +1,8 @@
 <?php 
+
 require '../functions.php';
 
-$keyword = $_GET['keyword'];
+$keyword = validateData($_GET['keyword']);
 
 $query = "SELECT * FROM tb_laundry WHERE 
                 nama_laundry LIKE '%$keyword%' OR
