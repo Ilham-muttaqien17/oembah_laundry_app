@@ -408,7 +408,22 @@ function getTotalOrders($email) {
     return $data;    
 }
 
+function getAllTransactions($email) {
+    global $conn;
 
+    $result = mysqli_query($conn, "SELECT id_laundry FROM tb_laundry WHERE email = '$email'");
+    $laundry = mysqli_fetch_assoc($result);
+
+    $id_laundry = (int) $laundry['id_laundry'];
+
+    $data = query("SELECT * FROM tb_order 
+                    INNER JOIN tb_transaksi ON tb_transaksi.id_order = tb_order.id_order 
+                    INNER JOIN tb_laundry ON tb_laundry.id_laundry = tb_order.id_laundry 
+                    WHERE tb_order.id_laundry = '$id_laundry'");
+
+
+    return $data;    
+}
 
 
 ?>

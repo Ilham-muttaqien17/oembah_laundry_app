@@ -14,7 +14,7 @@ $laundry = getLaundryProfile($_SESSION['admin']);
 
 $orders = getTotalOrders($_SESSION['admin']);
 
-
+$transactions = getAllTransactions($_SESSION['admin']);
 
 ?>
 
@@ -109,7 +109,7 @@ $orders = getTotalOrders($_SESSION['admin']);
                         <div class="flex items-center bg-green-600 p-4 gap-x-6 rounded-lg justify-center">
                             <img class="w-14" src="./img/icons/transaction_icon.svg" alt="" />
                             <ul class="text-white">
-                                <h1 class="text-4xl font-semibold text-center">034</h1>
+                                <h1 class="text-4xl font-semibold text-center"><?= sizeof($transactions);?></h1>
                                 <h2 class="text-sm lg:text-base">Total Transaksi</h2>
                             </ul>
                         </div>
