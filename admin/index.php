@@ -18,6 +18,12 @@ $transactions = getAllTransactions($_SESSION['admin']);
 
 $totalCustomer = countCustomer($transactions, "id_user");
 
+$waitingOrder = countOrder($_SESSION['admin'], "Waiting");
+$confirmedOrder = countOrder($_SESSION['admin'], "Confirmed");
+$processedOrder = countOrder($_SESSION['admin'], "On Process");
+$deliveryOrder = countOrder($_SESSION['admin'], "On Delivery");
+$deliveredOrder = countOrder($_SESSION['admin'], "Delivered");
+
 ?>
 
 <!DOCTYPE html>
@@ -91,11 +97,36 @@ $totalCustomer = countCustomer($transactions, "id_user");
                 <hr class="w-full mt-4 my-10" />
 
                 <div class="w-10/12 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 auto-cols-auto mt-4 gap-x-4 gap-y-4">
-                    <a class="text-center text-white text-sm lg:text-base font-semibold bg-dark-blue rounded-md py-4" href="page/order_in.php">ORDER IN</a>
-                    <a class="text-center text-white text-sm lg:text-base font-semibold bg-dark-blue rounded-md py-4" href="page/on_process.php">PROCESS </a>
-                    <a class="text-center text-white text-sm lg:text-base font-semibold bg-dark-blue rounded-md py-4" href="page/send_order.php">SEND ORDER</a>
-                    <a class="text-center text-white text-sm lg:text-base font-semibold bg-dark-blue rounded-md py-4" href="page/on_delivery.php">ON DELIVERY</a>
-                    <a class="text-center text-white text-sm lg:text-base font-semibold bg-dark-blue rounded-md py-4" href="page/order_finish.php">FINISH</a>
+                    <a class="relative text-center text-white text-sm lg:text-base font-semibold bg-dark-blue rounded-md py-4" href="page/order_in.php">
+                        <?php if(sizeof($waitingOrder) > 0) { ?>
+                            <span class="text-sm absolute -top-3 right-1 sm:right-3 lg:right-4 bg-red-600 rounded-full w-6 h-6 pt-[0.125rem]"><?= sizeof($waitingOrder); ?></span>
+                        <?php } ?>    
+                        ORDER IN
+                    </a>
+                    <a class="relative text-center text-white text-sm lg:text-base font-semibold bg-dark-blue rounded-md py-4" href="page/on_process.php">
+                        <?php if(sizeof($confirmedOrder) > 0) { ?>
+                            <span class="text-sm absolute -top-3 right-1 sm:right-3 lg:right-4 bg-red-600 rounded-full w-6 h-6 pt-[0.125rem]"><?= sizeof($confirmedOrder); ?></span>
+                        <?php } ?>  
+                        PROCESS 
+                    </a>
+                    <a class="relative text-center text-white text-sm lg:text-base font-semibold bg-dark-blue rounded-md py-4" href="page/send_order.php">
+                        <?php if(sizeof($processedOrder) > 0) { ?>
+                            <span class="text-sm absolute -top-3 right-1 sm:right-3 lg:right-4 bg-red-600 rounded-full w-6 h-6 pt-[0.125rem]"><?= sizeof($processedOrder); ?></span>
+                        <?php } ?>     
+                        SEND ORDER
+                    </a>
+                    <a class="relative text-center text-white text-sm lg:text-base font-semibold bg-dark-blue rounded-md py-4" href="page/on_delivery.php">
+                        <?php if(sizeof($deliveryOrder) > 0) { ?>
+                                <span class="text-sm absolute -top-3 right-1 sm:right-3 lg:right-4 bg-red-600 rounded-full w-6 h-6 pt-[0.125rem]"><?= sizeof($deliveryOrder); ?></span>
+                        <?php } ?>    
+                        ON DELIVERY
+                    </a>
+                    <a class="relative text-center text-white text-sm lg:text-base font-semibold bg-dark-blue rounded-md py-4" href="page/order_finish.php">
+                        <?php if(sizeof($deliveredOrder) > 0) { ?>
+                                <span class="text-sm absolute -top-3 right-1 sm:right-3 lg:right-4 bg-red-600 rounded-full w-6 h-6 pt-[0.125rem]"><?= sizeof($deliveredOrder); ?></span>
+                        <?php } ?>     
+                        FINISH
+                    </a>
                 </div>
 
                 <div class="w-10/12 mx-auto mt-8 flex flex-col gap-y-4">
