@@ -16,6 +16,8 @@ $orders = getTotalOrders($_SESSION['admin']);
 
 $transactions = getAllTransactions($_SESSION['admin']);
 
+$totalCustomer = countCustomer($transactions, "id_user");
+
 ?>
 
 <!DOCTYPE html>
@@ -116,7 +118,7 @@ $transactions = getAllTransactions($_SESSION['admin']);
                         <div class="flex items-center bg-pink-600 p-4 gap-x-6 rounded-lg justify-center">
                             <img class="w-14" src="./img/icons/customer_icon.svg" alt="" />
                             <ul class="text-white">
-                                <h1 class="text-4xl font-semibold text-center">035</h1>
+                                <h1 class="text-4xl font-semibold text-center"><?= sizeof($totalCustomer);?></h1>
                                 <h2 class="text-sm lg:text-base">Total Pelanggan</h2>
                             </ul>
                         </div>
