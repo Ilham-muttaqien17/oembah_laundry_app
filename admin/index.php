@@ -132,19 +132,23 @@ $transactions = getAllTransactions($_SESSION['admin']);
                                 <tr class="border border-black bg-blue-300">
                                     <th class="border border-black px-4">Id Transaksi</th>
                                     <th class="border border-black px-4">Id Order</th>
+                                    <th class="border border-black px-4">Nama Pelanggan</th>
                                     <th class="border border-black px-4">Total Biaya</th>
                                     <th class="border border-black px-4">Tanggal Transaksi</th>
                                     <th class="border border-black px-4">Status Transaksi</th>
                                 </tr>
                             </thead>
                             <tbody class="text-center">
+                                <?php foreach (array_reverse($transactions) as $transaction) { ?>
                                 <tr class="border">
-                                    <th class="border border-black">001</th>
-                                    <th class="border border-black">OD001</th>
-                                    <th class="border border-black">20.000</th>
-                                    <th class="border border-black">19-11-2021</th>
-                                    <th class="border border-black">Selesai</th>
+                                    <td class="border border-black"><?= $transaction['id_transaksi']; ?></td>
+                                    <td class="border border-black"><?= $transaction['id_order']; ?></td>
+                                    <td class="border border-black"><?= $transaction['nama_user']; ?></td>
+                                    <td class="border border-black"><?= $transaction['total_biaya']; ?></td>
+                                    <td class="border border-black"><?= date("d-m-Y", strtotime($transaction['tgl_transaksi'])); ?></td>
+                                    <td class="border border-black"><?= $transaction['status_transaksi']; ?></td>
                                 </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
                     </div>
