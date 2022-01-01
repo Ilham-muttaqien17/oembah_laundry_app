@@ -420,7 +420,7 @@ function getAllTransactions($email) {
                     INNER JOIN tb_transaksi ON tb_transaksi.id_order = tb_order.id_order 
                     INNER JOIN tb_laundry ON tb_laundry.id_laundry = tb_order.id_laundry 
                     INNER JOIN tb_user ON tb_user.id_user = tb_order.id_user
-                    WHERE tb_order.id_laundry = '$id_laundry'");
+                    WHERE tb_order.id_laundry = '$id_laundry' ORDER BY tb_transaksi.id_transaksi");
 
 
     return $data;    
