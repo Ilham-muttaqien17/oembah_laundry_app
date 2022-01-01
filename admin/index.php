@@ -11,7 +11,10 @@ if(!isset($_SESSION['admin'])){
 }
 
 $laundry = getLaundryProfile($_SESSION['admin']);
-// var_dump($laundry);
+
+$orders = getTotalOrders($_SESSION['admin']);
+
+
 
 ?>
 
@@ -99,21 +102,21 @@ $laundry = getLaundryProfile($_SESSION['admin']);
                         <div class="flex items-center bg-blue-800 p-4 gap-x-6 rounded-lg justify-center">
                             <img class="w-14" src="./img/icons/order_icon.svg" alt="" />
                             <ul class="text-white">
-                                <h1 class="text-4xl font-semibold">017</h1>
+                                <h1 class="text-4xl font-semibold text-center"><?= sizeof($orders);?></h1>
                                 <h2 class="text-sm lg:text-base">Total Pesanan</h2>
                             </ul>
                         </div>
                         <div class="flex items-center bg-green-600 p-4 gap-x-6 rounded-lg justify-center">
                             <img class="w-14" src="./img/icons/transaction_icon.svg" alt="" />
                             <ul class="text-white">
-                                <h1 class="text-4xl font-semibold">024</h1>
+                                <h1 class="text-4xl font-semibold text-center">034</h1>
                                 <h2 class="text-sm lg:text-base">Total Transaksi</h2>
                             </ul>
                         </div>
                         <div class="flex items-center bg-pink-600 p-4 gap-x-6 rounded-lg justify-center">
                             <img class="w-14" src="./img/icons/customer_icon.svg" alt="" />
                             <ul class="text-white">
-                                <h1 class="text-4xl font-semibold">035</h1>
+                                <h1 class="text-4xl font-semibold text-center">035</h1>
                                 <h2 class="text-sm lg:text-base">Total Pelanggan</h2>
                             </ul>
                         </div>

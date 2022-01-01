@@ -395,5 +395,20 @@ function getLaundryProfile($email) {
     return mysqli_fetch_assoc($result);
 }
 
+function getTotalOrders($email) {
+    global $conn;
+
+    $result = mysqli_query($conn, "SELECT id_laundry FROM tb_laundry WHERE email = '$email'");
+    $laundry = mysqli_fetch_assoc($result);
+
+    $id_laundry = (int) $laundry['id_laundry'];
+
+    $data = query("SELECT * FROM tb_order WHERE id_laundry = '$id_laundry'");
+
+    return $data;    
+}
+
+
+
 
 ?>
