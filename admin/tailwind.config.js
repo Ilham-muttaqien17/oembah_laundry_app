@@ -1,6 +1,6 @@
 const plugin = require("tailwindcss/plugin");
 module.exports = {
-    content: ["./page/*.{html,js}", "./page/*.{php}", "*.{html,js,php}"],
+    content: ["./page/*.{html,php}", "*.{html,js,php}"],
     theme: {
         extend: {
             fontFamily: {
