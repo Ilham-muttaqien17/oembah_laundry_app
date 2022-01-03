@@ -49,7 +49,7 @@ $deliveredOrder = countOrder($_SESSION['admin'], "Delivered");
         <div class="flex flex-row">
             <!-- Sidebar -->
 
-            <nav id="navbar" class="bg-dark-blue px-4 py-8 h-screen w-[60px] fixed left-0 top-0 z-10 transition-all duration-150 ease-in-out">
+            <nav id="navbar" class="bg-dark-blue px-4 py-8 h-screen w-[60px] fixed left-0 top-0 z-50 transition-all duration-150 ease-in-out">
                 <div class="flex items-center gap-x-4 text-white cursor-pointer">
                     <img id="open-menu" class="w-7 flex" src="./img/icons/menu_icon.svg" alt="Menu Icon" />
                     <span class="nav-link hidden font-bold">OEMBAH</span>
@@ -83,7 +83,7 @@ $deliveredOrder = countOrder($_SESSION['admin'], "Delivered");
             </nav>
 
             <!-- Overlay -->
-            <div id="overlay" class="bg-dark-blue bg-opacity-50 absolute inset-0 hidden"></div>
+            <div id="overlay" class="bg-dark-blue bg-opacity-50 absolute inset-0 hidden z-40"></div>
 
             <!-- Content -->
             <main class="w-full bg-gray-soft ml-[3.7rem] h-screen px-2 overflow-y-scroll">
