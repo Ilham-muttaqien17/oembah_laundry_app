@@ -92,11 +92,11 @@ if(isset($_GET['id'])){
 
             <!-- Content -->
             <main class="w-full bg-gray-soft ml-[3.7rem] h-screen px-2 overflow-y-scroll">
-                <div class="flex my-10">
+                <div class="flex my-8">
                     <h1 class="mx-auto text-dark-blue font-bold text-xl lg:text-2xl">PROCESS ORDER</h1>
                 </div>
 
-                <hr class="w-full border border-dark-blue" />
+                <hr class="w-full" />
 
                 <div class="flex flex-col gap-y-4 py-4 w-11/12 mx-auto text-sm lg:text-base">
                     <div class="flex items-center gap-x-2">
@@ -132,7 +132,7 @@ if(isset($_GET['id'])){
                             <a class="flex items-center bg-green-600 text-white font-semibold justify-center py-2 rounded-lg gap-x-2" href="on_process.php?id=<?= $row['id_order']; ?>" onclick="return confirm('Proses pesanan?');">
                                     <span>PROSES PESANAN</span>
                             </a>
-                            <a class="flex items-center bg-white text-dark-blue font-semibold justify-center py-2 rounded-lg gap-x-2" href="https://wa.me/<?= $row['kontak']; ?>">
+                            <a class="flex items-center bg-white text-dark-blue font-semibold justify-center py-2 rounded-lg gap-x-2" href="https://wa.me/<?= $row['kontak']; ?>" target="_blank">
                                 <img src="../img/icons/whatsapp_icon.svg" alt="Whatsapp Icon" />
                                 <span>Chat User</span>
                             </a>

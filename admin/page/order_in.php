@@ -103,11 +103,11 @@ if(isset($_GET['reject_oid'])) {
 
             <!-- Content -->
             <main class="w-full bg-gray-soft ml-[3.7rem] h-screen px-2 overflow-y-scroll">
-                <div class="flex my-10">
+                <div class="flex my-8">
                     <h1 class="mx-auto text-dark-blue font-bold text-xl lg:text-2xl">ORDER IN</h1>
                 </div>
 
-                <hr class="w-full border border-dark-blue" />
+                <hr class="w-full" />
 
                 <div class="flex flex-col gap-y-4 py-4 w-11/12 mx-auto text-sm lg:text-base">
                     <div class="flex items-center gap-x-2">
@@ -141,10 +141,10 @@ if(isset($_GET['reject_oid'])) {
                                 </div>
                             </div>
                             <div class="w-full flex items-center gap-x-4">
-                                <a class="text-white rounded-full py-1 text-center px-2 bg-red-600 flex-1" href="order_in.php?reject_oid=<?= $row['id_order']; ?>">Tolak</a>
-                                <a class="text-white rounded-full py-1 text-center px-2 bg-green-600 flex-1" href="order_in.php?confirm_oid=<?= $row['id_order']; ?>">Konfirmasi</a>
+                                <a class="text-white rounded-full py-1 text-center px-2 bg-red-600 flex-1" href="order_in.php?reject_oid=<?= $row['id_order']; ?>" onclick="return confirm('Tolak pesanan?');">Tolak</a>
+                                <a class="text-white rounded-full py-1 text-center px-2 bg-green-600 flex-1" href="order_in.php?confirm_oid=<?= $row['id_order']; ?>" onclick="return confirm('Konfirmasi pesanan?');">Konfirmasi</a>
                             </div>
-                            <a class="flex items-center bg-white text-dark-blue font-semibold justify-center py-2 rounded-lg gap-x-2" href="https://wa.me/<?= $row['kontak']; ?>">
+                            <a class="flex items-center bg-white text-dark-blue font-semibold justify-center py-2 rounded-lg gap-x-2" href="https://wa.me/<?= $row['kontak']; ?>" target="_blank">
                                 <img src="../img/icons/whatsapp_icon.svg" alt="Whatsapp Icon" />
                                 <span>Chat User</span>
                             </a>
