@@ -10,9 +10,11 @@ if(!isset($_SESSION['admin'])){
     header('location: ../login.php');
 }
 
-$data = $_SESSION['admin'];
+$laundry_id = checkUser($_SESSION['admin']);
 
-$order = query("SELECT * FROM tb_order");
+$order = query("SELECT * FROM tb_order INNER JOIN tb_user ON tb_user.id_user = tb_order.id_user WHERE tb_order.id_laundry = '$laundry_id'"); 
+
+$processedOrder = countOrder($_SESSION['admin'], "On Process");
 
 if(isset($_GET['id'])){
 
@@ -30,57 +32,118 @@ if(isset($_GET['id'])){
 
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Send Order</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Send Order Page</title>
-</head>
+        <!-- Font Family -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
 
-<body>
-    <h1>Halaman List Send Order</h1>
-    <a class="btn btn-secondary mb-5" href="../index.php">Home</a>
+        <!-- JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" type="text/javascript"></script>
+        <script src="../js/script.js"></script>
 
+        <link rel="stylesheet" href="../css/output.css" />
+    </head>
+    <body>
+        <div class="flex flex-row">
+            <!-- Sidebar -->
 
-    <?php $i = 0 ?>
-    <?php foreach(array_reverse($order) as $row) : ?>
-    <?php if(checkUser($data) == $row['id_laundry']) :?>
-    <?php if($row['status'] == 'On Process') : ?>
-    <div class="card my-4 w-25">
-        <p>Order ID: <?= $row['id_order'] ?></p>
-        <?php $userName = getUserName($row['id_user'])?>
-        <p>Nama Pelanggan: <?= $userName ?></p>
-        <p>Kuantitas: <?= $row['qty'] ?></p>
-        <a href="send_order.php?id=<?= $row['id_order']; ?>" onclick="return confirm('Kirim pesanan?');"
-            class="btn btn-primary">Kirim Pesanan</a>
-        <br>
-        <?php
-            $contactUser = getContactUser($row['id_user']);
-            $position = getUserPosition($row['id_user']);
-            $latitude = $position['latitude'];
-            $longitude = $position['longitude'];
+            <nav id="navbar" class="bg-dark-blue px-4 py-8 h-screen w-[60px] fixed left-0 top-0 z-10 transition-all duration-150 ease-in-out">
+                <div class="flex items-center gap-x-4 text-white cursor-pointer">
+                    <img id="open-menu" class="w-7 flex" src="../img/icons/menu_icon.svg" alt="Menu Icon" />
+                    <span class="nav-link hidden font-bold">OEMBAH</span>
+                </div>
+                <ul class="flex flex-col gap-y-8 mt-10">
+                    <li title="Dashboard">
+                        <a class="flex items-center gap-x-4 text-white" href="../">
+                            <img class="w-7" src="../img/icons/home_icon.svg" alt="Dashboard Icon" />
+                            <span class="nav-link hidden">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex items-center gap-x-4 text-white" href="#">
+                            <img class="w-7" src="../img/icons/statistic_icon.svg" alt="Statistic Icon" />
+                            <span class="nav-link hidden">Statistik</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex items-center gap-x-4 text-white" href="profile.php">
+                            <img class="w-7" src="../img/icons/profile_icon.svg" alt="Profile Icon" />
+                            <span class="nav-link hidden">Profile</span>
+                        </a>
+                    </li>
+                </ul>
+                <div>
+                    <a class="absolute bottom-4 flex items-center gap-x-4 text-white" href="../logout.php">
+                        <img class="w-7" src="../img/icons/logout_icon.svg" alt="Logout Icon" />
+                        <span class="nav-link hidden">Keluar</span>
+                    </a>
+                </div>
+            </nav>
 
-            echo '<a href="https://wa.me/'. $contactUser. '">Chat User</a>';
-            echo '<br>';
-            echo '<a href="http://www.google.com/maps/place/'. $latitude. ',' . $longitude . '">Cek Alamat</a>'
-        ?>
-    </div>
-    <?php $i++; ?>
-    <?php endif ?>
-    <?php endif ?>
-    <?php endforeach ?>
+            <!-- Overlay -->
+            <div id="overlay" class="bg-dark-blue bg-opacity-50 absolute inset-0 hidden"></div>
 
-    <?php
-    global $i;
-   
-        if($i <= 0){
-            echo "<p>Tidak ada pesanan yang bisa dikirim</p>";
-        } else {
-            echo "<p>Terdapat $i pesanan yang bisa dikirim</p>";
-        }
-    
-    ?>
-</body>
+            <!-- Content -->
+            <main class="w-full bg-gray-soft ml-[3.7rem] h-screen px-2 overflow-y-scroll">
+                <div class="flex my-8">
+                    <h1 class="mx-auto text-dark-blue font-bold text-xl lg:text-2xl">SEND ORDER</h1>
+                </div>
 
+                <hr class="w-full" />
+
+                <div class="flex flex-col gap-y-4 py-4 w-11/12 mx-auto text-sm lg:text-base">
+                    <div class="flex items-center gap-x-2">
+                        <div class="bg-red-600 w-4 h-4 rounded-full"></div>
+                        <p class="text-dark-blue font-semibold">Terdapat <?= sizeof($processedOrder); ?> order yang bisa dikirim</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-4">
+
+                    <?php foreach(array_reverse($order) as $row) : ?>
+                    <?php if($laundry_id == $row['id_laundry']) :?>
+                    <?php if($row['status'] == 'On Process') : ?>
+                        <div class="bg-dark-blue p-4 rounded-xl flex flex-col gap-y-4 text-xs md:text-sm lg:text-base">
+                            <div class="bg-white p-2 text-dark-blue font-semibold rounded-lg flex-1">
+                                <div class="flex flex-col">
+                                    <div class="grid grid-cols-3">
+                                        <p>Order ID</p>
+                                        <p class="col-span-2">: <?= $row['id_order'] ?></p>
+                                    </div>
+                                    <div class="grid grid-cols-3">
+                                        <p>Nama</p>
+                                        <p class="col-span-2">: <?= $row['nama_user'] ?></p>
+                                    </div>
+                                    <div class="grid grid-cols-3">
+                                        <p>Alamat</p>
+                                        <p class="col-span-2">: <?= $row['alamat'] ?></p>
+                                    </div>
+                                    <div class="grid grid-cols-3">
+                                        <p>Kuantitas</p>
+                                        <p>: <?= $row['qty'] ?></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full flex items-center gap-x-4">
+                                <a class="text-white rounded-full py-1 text-center px-2 bg-green-600 flex-1" href="send_order.php?id=<?= $row['id_order']; ?>" onclick="return confirm('Kirim pesanan?');">Kirim</a>
+                                <a class="text-white rounded-full py-1 text-center px-2 bg-yellow-600 flex-1" href="http://www.google.com/maps/place/<?= $row['latitude'] . ',' . $row['longitude']?>" target="_blank">Lokasi</a>
+                            </div>
+                            <a class="flex items-center bg-white text-dark-blue font-semibold justify-center py-2 rounded-lg gap-x-2" href="https://wa.me/<?= $row['kontak']; ?>" target="_blank">
+                                <img src="../img/icons/whatsapp_icon.svg" alt="Whatsapp Icon" />
+                                <span>Chat User</span>
+                            </a>
+                        </div>
+                    <?php endif ?>
+                    <?php endif ?>
+                    <?php endforeach ?>
+
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body>
 </html>
