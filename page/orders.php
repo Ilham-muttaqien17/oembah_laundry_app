@@ -37,7 +37,6 @@ $order = query("SELECT * FROM tb_order
                 INNER JOIN tb_transaksi ON tb_order.id_order = tb_transaksi.id_order
                 INNER JOIN tb_laundry ON tb_order.id_laundry = tb_laundry.id_laundry");
 
-
 ?>
 
 <!DOCTYPE html>
@@ -94,27 +93,31 @@ $order = query("SELECT * FROM tb_order
         </nav>
 
         <!-- Content -->
-        <div class="w-10/12 md:w-8/12 mx-auto my-20">
+        <div class="w-10/12 md:w-8/12 mx-auto mt-10 mb-20">
+            <h1 class="text-dark-blue font-bold text-xl mb-10">Daftar pesanan</h1>
             <div class="flex flex-col w-full gap-y-4">
-                <?php
-                foreach( array_reverse($order) as $row ) { 
-                    if(checkUser($data) == $row['id_user']) {
-                        if($row['status'] !== 'Delivered') {
-                            switch($row['tipe_laundry']) {
-                                case "Kiloan":
-                                    $satuan = "kg";
-                                    break;
-                                case "Sepatu":
-                                    $satuan = "pasang";
-                                    break;
-                                case "Helm":
-                                    $satuan = "buah";
-                                    break;
-                                case "Hotel":
-                                    $satuan = "kg";
-                                default:
-                                    break;
-                            }
+                <?php                
+                    if(sizeof($order) < 1) {
+                        echo "<div class='h-[220px] text-dark-blue text-sm'>Tidak ada pesanan yang dibuat</div>";
+                    } else { 
+                        foreach( array_reverse($order) as $row ) { 
+                            if(checkUser($data) == $row['id_user']) {
+                                if($row['status'] !== 'Delivered') {
+                                    switch($row['tipe_laundry']) {
+                                        case "Kiloan":
+                                            $satuan = "kg";
+                                            break;
+                                        case "Sepatu":
+                                            $satuan = "pasang";
+                                            break;
+                                        case "Helm":
+                                            $satuan = "buah";
+                                            break;
+                                        case "Hotel":
+                                            $satuan = "kg";
+                                        default:
+                                            break;
+                                    }
                 ?>
 
                     <div class="border p-4 rounded-xl shadow">
@@ -162,9 +165,10 @@ $order = query("SELECT * FROM tb_order
                     </div>
 
                 <?php 
+                            }
                         }
                     }
-                } 
+                }
                 ?>
             </div>
         </div>

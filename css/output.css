@@ -1255,11 +1255,6 @@ footer {
   margin-bottom: 9rem;
 }
 
-.mx-4 {
-  margin-left: 1rem;
-  margin-right: 1rem;
-}
-
 .my-20 {
   margin-top: 5rem;
   margin-bottom: 5rem;
@@ -1298,10 +1293,6 @@ footer {
   margin-top: 3rem;
 }
 
-.mb-5 {
-  margin-bottom: 1.25rem;
-}
-
 .mt-6 {
   margin-top: 1.5rem;
 }
@@ -1318,16 +1309,20 @@ footer {
   margin-bottom: 0.5rem;
 }
 
+.mb-20 {
+  margin-bottom: 5rem;
+}
+
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+
 .mt-8 {
   margin-top: 2rem;
 }
 
 .mb-8 {
   margin-bottom: 2rem;
-}
-
-.mb-10 {
-  margin-bottom: 2.5rem;
 }
 
 .flex {
@@ -1488,10 +1483,6 @@ footer {
 
 .grid-rows-4 {
   grid-template-rows: repeat(4, minmax(0, 1fr));
-}
-
-.flex-row {
-  flex-direction: row;
 }
 
 .flex-col {
