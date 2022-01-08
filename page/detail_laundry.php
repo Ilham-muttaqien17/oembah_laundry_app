@@ -90,8 +90,8 @@ $user = getUserProfile($_SESSION['user']);
                 <hr class="border border-dark-blue w-11/12 mx-auto" />
                 <ul class="relative mobile-links">
                     <li class="mobile-link"><a href="./profile.php">Profile</a></li>
-                    <li class="mobile-link"><a href="#">Pesanan</a></li>
-                    <li class="mobile-link"><a href="#">Riwayat</a></li>
+                    <li class="mobile-link"><a href="./orders.php">Pesanan</a></li>
+                    <li class="mobile-link"><a href="./history_order.php">Riwayat</a></li>
                     <li class="mobile-link"><a href="#">Notifikasi</a></li>
                 </ul>
             </div>
