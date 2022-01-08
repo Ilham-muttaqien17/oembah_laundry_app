@@ -1260,14 +1260,14 @@ footer {
   margin-right: 1rem;
 }
 
-.my-2 {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
 .my-20 {
   margin-top: 5rem;
   margin-bottom: 5rem;
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .mt-4 {
@@ -1302,6 +1302,10 @@ footer {
   margin-bottom: 1.25rem;
 }
 
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
 .mt-5 {
   margin-top: 1.25rem;
 }
@@ -1312,10 +1316,6 @@ footer {
 
 .mb-2 {
   margin-bottom: 0.5rem;
-}
-
-.mt-6 {
-  margin-top: 1.5rem;
 }
 
 .mt-8 {
@@ -1735,6 +1735,11 @@ footer {
 .bg-gray-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+}
+
+.bg-green-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(22 163 74 / var(--tw-bg-opacity));
 }
 
 .bg-red-200 {
