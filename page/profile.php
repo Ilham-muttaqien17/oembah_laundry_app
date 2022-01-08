@@ -77,8 +77,8 @@ if(isset($_GET['delete_id'])) {
                     </a>
                     <div class="hidden lg:block">
                         <ul class="nav-links">
-                            <li class="nav-link"><a href="#">Pesanan</a></li>
-                            <li class="nav-link"><a href="#">Riwayat</a></li>
+                            <li class="nav-link"><a href="./orders.php">Pesanan</a></li>
+                            <li class="nav-link"><a href="./history_order.php">Riwayat</a></li>
                             <li class="nav-link"><a href="#">Notifikasi</a></li>
                         </ul>
                     </div>
