@@ -33,9 +33,17 @@ if(isset($_GET['confirm'])) {
 }
 
 $user = getUserProfile($_SESSION['user']);
+$uid = $user['id_user'];
 $order = query("SELECT * FROM tb_order 
                 INNER JOIN tb_transaksi ON tb_order.id_order = tb_transaksi.id_order
-                INNER JOIN tb_laundry ON tb_order.id_laundry = tb_laundry.id_laundry");
+                INNER JOIN tb_laundry ON tb_order.id_laundry = tb_laundry.id_laundry
+                INNER JOIN tb_user ON tb_order.id_user = tb_user.id_user 
+                WHERE tb_user.id_user = '$uid'");
+
+$order_done = query("SELECT * FROM tb_order
+                    INNER JOIN tb_user ON tb_order.id_user = tb_user.id_user
+                    WHERE tb_user.id_user = '$uid' AND tb_order.status = 'Delivered'");
+
 
 ?>
 
@@ -97,7 +105,7 @@ $order = query("SELECT * FROM tb_order
             <h1 class="text-dark-blue font-bold text-xl mb-10">Daftar pesanan</h1>
             <div class="flex flex-col w-full gap-y-4">
                 <?php                
-                    if(sizeof($order) < 1) {
+                    if(sizeof($order) < 1 || sizeof($order_done) > 0) {
                         echo "<div class='h-[220px] text-dark-blue text-sm'>Tidak ada pesanan yang dibuat</div>";
                     } else { 
                         foreach( array_reverse($order) as $row ) { 
